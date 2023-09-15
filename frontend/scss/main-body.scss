@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+
+html {
+    font-size: 100%;
+}
+
+body {
+    background-color: #fff;
+    border: solid 2rem $orange;
+    color: $font-color-black;
+    border-radius: 1.4rem;
+    height: 100vh;
+    padding: 1.6rem;
+    width: 100vw;
+    height: 100vh;
+}
