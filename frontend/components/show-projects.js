@@ -1,7 +1,7 @@
 import auth from "../models/auth.js";
 import proj from "../models/proj.js";
 import {baseURL} from "../utils.js";
-export default class LoggedIn extends HTMLElement {
+export default class ShowProjects extends HTMLElement {
     constructor() {
         super();
 
@@ -13,8 +13,8 @@ export default class LoggedIn extends HTMLElement {
     //     return ["name"]
     // }
 
-    async reports() {
-        const result = await proj.reports();
+    async projects() {
+        const result = await proj.projects();
         console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
         return result;
     }
@@ -30,16 +30,14 @@ export default class LoggedIn extends HTMLElement {
     // connect component
     async connectedCallback() {
         let ul = document.createElement("ul");
-        let divUl = document.createElement("div");
-        divUl.innerHTML = "<h3>Recently submitted reports</h3>"
-        let reports = await this.reports();
-        reports.forEach(report => {
+        let projects = await this.projects();
+        projects.forEach(project => {
+            console.log(project);
             let li = document.createElement("li")
-            li.classList.add("closed-list", "unread")
-            li.textContent = `R:${report.reportid} | Project ${report.name} (id:${report.id}) \nReport ${report.submitted_report}`
+            li.classList.add("closed-list")
+            li.innerHTML = `${project.name} (id:${project.id}) \nTotal reports: ${project.total_reports}  <button class="li-button">Open</button>`
             li.addEventListener("click", (event) => {
-                event.target.classList.toggle("closed-list");
-                event.target.classList.toggle("open-list");
+
             });
             ul.appendChild(li);
 
@@ -49,7 +47,6 @@ export default class LoggedIn extends HTMLElement {
         // div.classList.add("logged-as"); // Gör en ruta som visar vem som är inloggad.
         // div.innerHTML=`<h3>User: ${auth.userId}</h3><h3>Role: ${auth.token}</h3>`
         this.innerHTML = "<user-info></user-info>"
-        divUl.appendChild(ul)
-        this.appendChild(divUl);
+        this.appendChild(ul);
     }
 }

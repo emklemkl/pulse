@@ -1,7 +1,61 @@
 login-view {
     position: relative;
-    grid-column-start: 5;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 8;
+    // grid-column-start: 5;
+    // grid-column-end: 7;
+    // grid-row-start: 3;
+    // grid-row-end: 8;
+    // overflow: scroll;
+}
+
+logged-view {
+    position: relative;
+    // grid-column-start: 1;
+    // grid-column-end: 11;
+    // grid-row-start: 1;
+    // grid-row-end: 9;
+}
+
+router-outlet {
+    max-width: 100%;
+}
+
+login-view {
+    margin-top: 35%;
+}
+
+user-info {
+    .logged-as {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        background-color: transparentize($lighter-orange,0.8);
+        border: 2px solid transparentize($lighter-orange,0.6) ;
+        color: transparentize($font-color-black, 0.2);
+        max-width: 24rem;
+        max-height: 30rem;
+        padding: 1.6rem;
+        border-radius: $border-rad-data;
+    
+        button {
+            display: flex;
+            justify-content: center;
+            border-radius: $border-rad-button;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.4rem;
+            padding: 0.7rem;
+            background-color: transparentize($lighter-orange,0.1);
+            border: 2px solid $lighter-orange;
+            text-decoration: none;
+            min-width: 6rem;
+            max-width: 10rem;
+            margin: 1.4rem 0.7rem;
+            color: $font-color-black;
+        }
+        #logout {
+            background-color: transparentize($lighter-orange,0.6);
+            border: 2px solid transparentize($lighter-orange,0.5) ;
+            color: transparentize($font-color-black, 0.2);
+        }
+    }
 }

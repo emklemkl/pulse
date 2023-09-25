@@ -1,35 +1,48 @@
 const middleware = require("./middleware/index.js");
 const pulse = require("./src/pulse.js");
 const express = require('express');
+const rf = require("./route-function/routeFunctions.js");
 const cors = require('cors');
-
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+const failAuth = {status: "fail", apiKey: "unauthorized"}
 const app = express();
 app.use(cors({origin: 'http://localhost:9000'})) //
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))
 const port = 1338;
-app.set("view engine", "ejs")
 
 app.use(middleware.logIncomingToConsole); // Log requests to console.
+app.use(middleware.apiKeyMiddleware);
+// app.use(pulse.compareApiKey); 
 app.get("/", indexRoute);
 
-app.get("/reports", getReports);
+app.get("/reports", rf.getReports);
 
-app.post("/login", loginPost);
+app.get("/projects", rf.getProjects);
 
+app.post("/login", rf.loginPost);
+
+/**
+ * @function loginPost
+ * @param {*} req 
+ * @param {*} res
+ * @description Handles the login auth process. if succeful it responds with a json success token.
+ */
 async function loginPost(req, res) {
-    console.log("LOGIN POST ROUTE");
-    console.log("req.body",req.body);
-    let loginStatus = await pulse.loginAuth(req.body.userId, req.body.password)
-    res.json(loginStatus);
+    let loginStatus = await pulse.loginAuth(req.body.userId, req.body.password, req.headers.authorization)
+        res.json(loginStatus);
 }
 
 async function getReports(req, res) {
     let res2 = await pulse.getAllReports()
-    console.log(res2);
-    let data = {};
-    data.title = "Start";
-    res.send(res2);
+        res.json(res2);
+
+}
+async function getProjects(req, res) {
+    let res2 = await pulse.getAllProjects()
+        res.json(res2);
+
 }
 
 async function indexRoute(req, res) {

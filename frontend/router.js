@@ -7,15 +7,24 @@ export default class Router extends HTMLElement {
         this.allRoutes = {
             "": {
                 view: "<div class='container'><login-view></login-view></div>",
-                name: "Proj",
+                name: "Log out",
+                hidden: true
             },
-            "logged": {
-                view: "<div class='container'><logged-view></logged-view></div>",
-                name: "Logged in",
+            "overview": {
+                view: "<div class='container'><logged-view></logged-view></div>", // Behövs containerdiven?
+                name: "Overview",
             },
-            "test": {
-                view: "<test-route></test-route>",
-                name: "test",
+            "reports": {
+                view: "<div class='container'><test-route></test-route></div>",
+                name: "Reports",
+            },
+            "projects": {
+                view: "<div class='container'><projects-view></projects-view></div>",
+                name: "Projects",
+            },
+            "team": {
+                view: "<test-route class='container'></test-route>",
+                name: "Team",
             }
         };
     }

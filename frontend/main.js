@@ -10,6 +10,14 @@ customElements.define('login-view', LoginView);
 import NotFound  from "./components/not-found.js";
 customElements.define('not-found', NotFound );
 
+import UserInfo from './components/user-info.js';
+customElements.define("user-info", UserInfo)
+
+import ShowProjects from "./components/show-projects.js";
+import ProjectsView from "./views/projects-view.js";
+customElements.define('show-projects', ShowProjects);
+customElements.define('projects-view', ProjectsView);
+
 import LoggedIn  from "./components/logged-in.js";
 import LoggedInView  from "./views/logged-view.js";
 customElements.define('logged-in', LoggedIn );

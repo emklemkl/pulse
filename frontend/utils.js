@@ -1,6 +1,6 @@
 "use strict";
-const apiKey = "ba571dc9c5c6ca68c78a99772f44dc81";
-apiKey = "e766e9fc-ddd2-496a-b8c6-6f81ba62ff1c";
+// const apiKey = "ba571dc9c5c6ca68c78a99772f44dc81";
+const apiKey = "e766e9fc-ddd2-496a-b8c6-6f81ba62ff1c";
 const baseURL = "http://localhost:1338";
 // const baseURLAuth = "http://localhost:1338/login";
 
@@ -23,3 +23,4 @@ const baseURL = "http://localhost:1338";
 // }
 
 export {apiKey, baseURL};
+

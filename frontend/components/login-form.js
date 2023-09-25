@@ -7,10 +7,10 @@ export default class LoginForm extends HTMLElement {
         this.name = "Project Pulse2";
     }
 
-    //component attributes
-    static get observedAttributes() {
-        return ["name"]
-    }
+    // //component attributes
+    // static get observedAttributes() {
+    //     return ["name"]
+    // }
 
     async test() {
         const response = await fetch(`${baseURL}/`, {
@@ -32,21 +32,25 @@ export default class LoginForm extends HTMLElement {
             console.log("NO TOKEN");
         }
         if (result.status === "ok") {
-            location.hash = "logged";
+            location.hash = "overview";
             console.log("Login Gick bra");
         } 
     }
 
-    // attribute change
-    attributeChangedCallback(property, oldValue, newValue) {
-        if (oldValue === newValue) {
-            return
-        }
-        this[property] = newValue;
-    }
+    // // attribute change
+    // attributeChangedCallback(property, oldValue, newValue) {
+    //     if (oldValue === newValue) {
+    //         return
+    //     }
+    //     this[property] = newValue;
+    // }
 
     // connect component
     connectedCallback() {
+
+        auth.token = ""; // Logs out user
+        auth.userId = ""; // Logs out user
+
         let form = document.createElement("form");
         // form.setAttribute("method", "POST")
         form.classList.add("login");

@@ -7,12 +7,12 @@
         font-size: 1.6rem;
         margin-bottom: 1.4rem;
         padding: 0.7rem;
-        border-radius: 0.4rem;
+        border-radius: $border-rad-button;
         border: 0.25rem $font-color-black solid;
     }
 
     .button {
-        border-radius: 0.4rem;
+        border-radius: $border-rad-button;
         font-size: 1.6rem;
         font-weight: bold;
         margin-bottom: 1.4rem;

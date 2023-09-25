@@ -6,7 +6,13 @@ export default class LoggedInView extends HTMLElement {
         if (!auth.token) {
             location.hash = "";
         }
-        
-        this.innerHTML = `<logged-in name="Logged in"></logged-in>`;
+        // Remove the hidden-class from navbar when logged in
+        const nav = document.getElementsByTagName("navigation-outlet")[0];
+        nav.classList.remove("hidden");
+        if (auth.token === "PM") {
+            this.innerHTML = `<logged-in class='container' name="Logged in"></logged-in>`;
+        } else if (auth.token === "TM") {
+            location.hash = "test";
+        }
     }
 }

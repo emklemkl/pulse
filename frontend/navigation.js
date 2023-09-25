@@ -11,12 +11,13 @@ export default class Navigation extends HTMLElement {
         const routes = this.router.routes;
 
         let navigationLinks = "";
-
+        let navButtonId = 0;
         for (let path in routes) {
             if (!routes[path].hidden) { // Hide unwanted routes
-                navigationLinks += `<a href='#${path}'>${routes[path].name}</a>`;
+                navigationLinks += `<a id=nav-button-${navButtonId} href='#${path}'>${routes[path].name}</a>`;
+                navButtonId++;
             }
         }
-        this.innerHTML = `<nav class="bottom-nav">${navigationLinks}</nav>`;
+        this.innerHTML = `<nav id="top-nav">${navigationLinks}</nav>`;
     }
 }

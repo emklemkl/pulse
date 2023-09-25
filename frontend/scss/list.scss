@@ -1,0 +1,87 @@
+
+ul {
+
+    border: 0.2rem solid transparentize($orange, 0.8);
+    border-radius: 1.4rem;
+    padding: 0.7rem;
+    background-color: transparentize($orange, 0.85);
+
+    .closed-list {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 36rem;
+        height: 3rem;
+        margin-bottom: 1.4rem;
+        white-space: nowrap;
+        font-size: 1.2rem;
+        animation: slideUpAnimation $animation-duration ease-out;
+    }
+    
+    .open-list {
+        width: auto;
+        max-width: 36rem;
+        height: auto;
+        max-height: 18rem;
+        margin-bottom: 1.4rem;
+        font-size: 1.2rem;
+        overflow-y: scroll;
+        animation: slideDownAnimation $animation-duration ease-out;
+    }
+    li {
+        height: 3rem;
+        list-style-type: none;
+        padding: 0.7rem;
+        color: $font-color-black;
+    }
+    
+    .unread {
+        border-left: $red solid 4px;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 0.4rem;
+        
+    }
+    
+    li:hover {
+        cursor: pointer;
+    }
+}
+
+.li-button {
+    background-color: #87ee90;
+    // border: 2px solid $orange ;
+    font-size: 1.2rem;
+    color: transparentize($font-color-black, 0.1);
+    min-height: 2rem;
+    max-width: 4rem;
+    border-radius: 0.4rem;
+    padding: 0 0.2rem;
+}
+
+
+
+@keyframes slideDownAnimation {
+    0% {
+        max-height: 3rem;
+    }
+    100% {
+        max-height: 18rem;
+    }
+}
+
+@keyframes slideUpAnimation {
+    0% {
+        max-height: 18rem;
+    }
+    100% {
+        max-height: 3rem;
+    }
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
