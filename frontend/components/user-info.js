@@ -27,7 +27,7 @@ export default class UserInfo extends HTMLElement {
         div.classList.add("logged-as"); // Gör en ruta som visar vem som är inloggad.
         
         this.appendChild(div)
-        div.innerHTML=`<h3>User: ${auth.userId}</h3><h3>Role: ${auth.token}</h3><h3>Name: ${auth.name}</h3><button id="logout">Log out</button>`
+        div.innerHTML=`<h3>User: ${auth.userId}</h3><h3>Role: ${auth.role}</h3><h3>Name: ${auth.name}</h3><button id="logout">Log out</button>`
         document.getElementById("logout").addEventListener("click", (e) => {
             location.hash="";
         })

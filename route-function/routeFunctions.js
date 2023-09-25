@@ -1,5 +1,13 @@
-"use strict"
+"use strict";
+/**
+ * @module routeFunctions
+ * @author Emil Karlsson
+ */
+
+require("dotenv").config(); 
+const jwt = require('jsonwebtoken');
 const pulse = require("./../src/pulse.js");
+
 /**
  * @function loginPost
  * @param {*} req 
@@ -7,8 +15,17 @@ const pulse = require("./../src/pulse.js");
  * @description Handles the login auth process. if succeful it responds with a json success token.
  */
 async function loginPost(req, res) {
-    let loginStatus = await pulse.loginAuth(req.body.userId, req.body.password, req.headers.authorization)
-        res.json(loginStatus);
+    let loginStatus = await pulse.loginAuth(req.body.userId, req.body.password)
+    if (loginStatus.status === "ok") {
+        const user = {userId: req.body.userId, name: loginStatus.name, role: loginStatus.role}
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,  {
+            expiresIn: '24h'
+        });
+        res.json(accessToken);
+    } else {
+        res.status(401)
+        res.json(loginStatus)
+    }
 }
 
 async function getReports(req, res) {

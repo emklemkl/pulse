@@ -1,0 +1,11 @@
+GET  http://localhost:1338/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGVsbGUxIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk1NjU4NTE2fQ.9nxXoLdk-KzutcDibKp8TzfVv7-bk6QPv-NDSKfsr_c
+###
+
+POST http://localhost:1338/login
+Content-Type: application/json
+
+{
+    "userId": 1000,
+    "password": "test"
+}

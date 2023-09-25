@@ -9,7 +9,7 @@ export default class LoggedInView extends HTMLElement {
         // Remove the hidden-class from navbar when logged in
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
-        if (auth.token === "PM") {
+        if (auth.token) {
             this.innerHTML = `<logged-in class='container' name="Logged in"></logged-in>`;
         } else if (auth.token === "TM") {
             location.hash = "test";

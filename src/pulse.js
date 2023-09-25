@@ -1,11 +1,13 @@
+require("dotenv").config(); 
 /**
  * @module pulse
  * @author Emil Karlsson
  */
 "use strict";
+
 const config = require("../config/db/pulse.json");
 const mysql = require("promise-mysql");
-
+const jwt = require('jsonwebtoken');
 let res;
 let sql;
 
@@ -51,9 +53,12 @@ async function getAllProjects() {
  * @returns Employees found in db
  */
 async function loginAuth(id, pw) {
+    console.log("🚀 ~ file: pulse.js:56 ~ loginAuth ~ id:", id,pw)
     sql = "CALL p_find_matching_user(?)";
     const db = await mysql.createConnection(config);
     res = await db.query(sql,[id]);
+    // const user = {role: res[0][0].role, name: res[0][0].name}
+    console.log(res[0]);
     if (res[0][0].password === pw){
         return {role: res[0][0].role, name: res[0][0].name, status: "ok"};
     } 

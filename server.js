@@ -1,57 +1,45 @@
-const middleware = require("./middleware/index.js");
+require("dotenv").config(); 
+const mw = require("./middleware/index.js");
 const pulse = require("./src/pulse.js");
 const express = require('express');
 const rf = require("./route-function/routeFunctions.js");
 const cors = require('cors');
 var bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const saltRounds = 10;
-const failAuth = {status: "fail", apiKey: "unauthorized"}
+
 const app = express();
 app.use(cors({origin: 'http://localhost:9000'})) //
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))
 const port = 1338;
 
-app.use(middleware.logIncomingToConsole); // Log requests to console.
-app.use(middleware.apiKeyMiddleware);
+app.use(mw.logIncomingToConsole); // Log requests to console.
+// app.use(middleware.apiKeyMiddleware);
 // app.use(pulse.compareApiKey); 
-app.get("/", indexRoute);
+// app.get("/", indexRoute);
 
-app.get("/reports", rf.getReports);
+app.post("/login", rf.loginPost)
 
-app.get("/projects", rf.getProjects);
 
-app.post("/login", rf.loginPost);
+// function authToken(req, res, next) {
+//     const authHeader = req.headers["authorization"];
+//     const token = authHeader && authHeader.split(" ")[1]
+//     if (token == null) return res.sendStatus(401)
 
-/**
- * @function loginPost
- * @param {*} req 
- * @param {*} res
- * @description Handles the login auth process. if succeful it responds with a json success token.
- */
-async function loginPost(req, res) {
-    let loginStatus = await pulse.loginAuth(req.body.userId, req.body.password, req.headers.authorization)
-        res.json(loginStatus);
-}
+//     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//         if (err) { return res.sendStatus(403) }
+//         req.user = user
+//         console.log("🚀 ~ file: server.js:49 ~ jwt.verify ~ user:", user)
+//     })
+//     next();
+// }
 
-async function getReports(req, res) {
-    let res2 = await pulse.getAllReports()
-        res.json(res2);
+app.get("/reports", mw.authToken, rf.getReports);
 
-}
-async function getProjects(req, res) {
-    let res2 = await pulse.getAllProjects()
-        res.json(res2);
+app.get("/projects", mw.authToken, rf.getProjects);
 
-}
 
-async function indexRoute(req, res) {
-    let res2 = await pulse.getAllEmployees()
-    console.log(res2);
-    let data = {};
-    data.title = "Start";
-    res.json({test: "test2"});
-}
 
 app.listen(port, logStartUpDetailsToConsole);
 

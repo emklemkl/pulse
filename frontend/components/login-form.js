@@ -31,7 +31,7 @@ export default class LoginForm extends HTMLElement {
         } else {
             console.log("NO TOKEN");
         }
-        if (result.status === "ok") {
+        if (auth.token) {
             location.hash = "overview";
             console.log("Login Gick bra");
         } 
