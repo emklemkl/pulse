@@ -10,6 +10,11 @@ customElements.define('login-view', LoginView);
 import NotFound  from "./components/not-found.js";
 customElements.define('not-found', NotFound );
 
+import ShowTeam from "./components/show-team.js"
+import TeamView from "./views/team-view.js";
+customElements.define('show-team', ShowTeam );
+customElements.define('team-view', TeamView );
+
 import UserInfo from './components/user-info.js';
 customElements.define("user-info", UserInfo)
 

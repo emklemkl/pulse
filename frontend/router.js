@@ -23,7 +23,7 @@ export default class Router extends HTMLElement {
                 name: "Projects",
             },
             "team": {
-                view: "<test-route class='container'></test-route>",
+                view: "<team-view class='container'></team-view>",
                 name: "Team",
             }
         };

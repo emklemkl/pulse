@@ -8,10 +8,8 @@ export default class ShowProjects extends HTMLElement {
         this.name = "Project Pulse2";
     }
 
-    //component attributes
-    // static get observedAttributes() {
-    //     return ["name"]
-    // }
+    // static get observedAttributes()
+
 
     async projects() {
         const result = await proj.projects();
@@ -19,13 +17,7 @@ export default class ShowProjects extends HTMLElement {
         return result;
     }
 
-    // attribute change
-    // attributeChangedCallback(property, oldValue, newValue) {
-    //     if (oldValue === newValue) {
-    //         return
-    //     }
-    //     this[property] = newValue;
-    // }
+    // attributeChangedCallback(property, oldValue, newValue) 
 
     // connect component
     async connectedCallback() {

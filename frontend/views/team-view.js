@@ -1,5 +1,5 @@
 import auth from "../models/auth.js"
-export default class LoggedInView extends HTMLElement {
+export default class TeamView extends HTMLElement {
 
     // connect component
     connectedCallback() {
@@ -11,7 +11,7 @@ export default class LoggedInView extends HTMLElement {
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
         if (auth.token) {
-            this.innerHTML = `<logged-in class='container' name="Logged in"></logged-in>`;
+            this.innerHTML = `<show-team class='container' name="Logged in"></show-team>`;
         } else if (auth.token === "TM") {
             location.hash = "test";
         }

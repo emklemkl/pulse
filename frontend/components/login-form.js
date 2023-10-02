@@ -60,7 +60,6 @@ export default class LoginForm extends HTMLElement {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             this.login();
-            /////////// Gör login
         });
 
         // Create userId input element

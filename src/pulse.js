@@ -1,4 +1,8 @@
 require("dotenv").config(); 
+const mailgun = require('mailgun-js')({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: sandboxea48dd0fd38b4069930b1b9988cdbddd.mailgun.org,
+});
 /**
  * @module pulse
  * @author Emil Karlsson
@@ -49,6 +53,40 @@ async function getAllProjects() {
 }
 
 /**
+ * @function getTeamMembers
+ * @returns Returns a db response with all registered team member that have the role TM
+ */
+async function getTeamMembers() {
+    sql = "CALL p_get_all_team_members()";
+    console.log(123123123213);
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql);
+    return res;
+}
+
+/**
+ * @function getTeamMembers
+ * @returns Returns a db response with all registered team member that have the role TM
+ */
+async function addTeamMembers(user_info) {
+    sql = "CALL p_add_new_team_members(?,?,?,?,?,?)";
+    const [ , ...users] = user_info
+
+    users.forEach(async user =>  {
+        console.log("asdsadsad",user);
+        const db = await mysql.createConnection(config);
+        res = await db.query(sql, user);
+        console.log("p_add_team_members RES:",res[0]);
+        return res;
+    });    
+
+    const formData = require('form-data');
+    const Mailgun = require('mailgun.js');
+    const mailgun = new Mailgun(formData);
+    const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
+}
+
+/**
  * @function getAllEmployees
  * @returns Employees found in db
  */
@@ -81,5 +119,7 @@ module.exports = {
     getAllReports: getAllReports,
     getAllProjects: getAllProjects,
     compareApiKey: compareApiKey,
+    getTeamMembers: getTeamMembers,
+    addTeamMembers: addTeamMembers
 } 
     

@@ -19,23 +19,13 @@ app.use(mw.logIncomingToConsole); // Log requests to console.
 // app.use(pulse.compareApiKey); 
 // app.get("/", indexRoute);
 
-app.post("/login", rf.loginPost)
-
-
-// function authToken(req, res, next) {
-//     const authHeader = req.headers["authorization"];
-//     const token = authHeader && authHeader.split(" ")[1]
-//     if (token == null) return res.sendStatus(401)
-
-//     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//         if (err) { return res.sendStatus(403) }
-//         req.user = user
-//         console.log("🚀 ~ file: server.js:49 ~ jwt.verify ~ user:", user)
-//     })
-//     next();
-// }
+app.post("/login", rf.loginPost) // overview
 
 app.get("/reports", mw.authToken, rf.getReports);
+
+app.get("/team", mw.authToken, rf.getTeam);
+
+app.post("/add-team-member", mw.authToken, rf.addTeamMembers);
 
 app.get("/projects", mw.authToken, rf.getProjects);
 
