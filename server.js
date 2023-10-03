@@ -6,18 +6,20 @@ const rf = require("./route-function/routeFunctions.js");
 const cors = require('cors');
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 const saltRounds = 10;
+
 
 const app = express();
 app.use(cors({origin: 'http://localhost:9000'})) //
 app.use(express.json())
 // app.use(express.urlencoded({extended: false}))
-const port = 1338;
-
-app.use(mw.logIncomingToConsole); // Log requests to console.
 // app.use(middleware.apiKeyMiddleware);
 // app.use(pulse.compareApiKey); 
 // app.get("/", indexRoute);
+const port = 1338;
+
+app.use(mw.logIncomingToConsole); // Log requests to console.
 
 app.post("/login", rf.loginPost) // overview
 

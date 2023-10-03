@@ -24,26 +24,12 @@ export default class LoginForm extends HTMLElement {
             this.credentials.userId,
             this.credentials.password,
         );
-            console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
-            
-        if (auth.token) {
-            console.log("TOKEN", auth.token);
-        } else {
-            console.log("NO TOKEN");
-        }
+
         if (auth.token) {
             location.hash = "overview";
-            console.log("Login Gick bra");
+            console.log("Login Gick bra",auth.token);
         } 
     }
-
-    // // attribute change
-    // attributeChangedCallback(property, oldValue, newValue) {
-    //     if (oldValue === newValue) {
-    //         return
-    //     }
-    //     this[property] = newValue;
-    // }
 
     // connect component
     connectedCallback() {

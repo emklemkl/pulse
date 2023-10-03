@@ -18,6 +18,9 @@ export default class ShowTeam extends HTMLElement {
     async connectedCallback() {
         let ul = document.createElement("ul");
         let teamRes = await this.team();
+
+        // ------------------------------------------------------Gör en function med eventl. /alerantivt uppdatera i eventl för <input> 
+        // -----------------------------------------------------------för att refresha anställda efter uppladdning?
         teamRes.forEach(member => {
             console.log(member);
             let li = document.createElement("li")
@@ -36,18 +39,19 @@ export default class ShowTeam extends HTMLElement {
         
         let form = document.createElement("form")
         const label = document.createElement("label");
-        label.textContent = "Add team member";
+        label.textContent = "Add team member(s). An automated email will be sent to the new users with instructions on changing passwords";
         form.appendChild(label);
         let input = document.createElement("input")
         input.setAttribute("type", "file")
         input.setAttribute("accept", "csv")
 
-        // On change fire el, when a csv file is selected it will instantly be used.
+        // When a csv file is selected it will instantly be used to create an account for the user in the db.
+        // An email containing informaition regarding change of password will be sent from the server
         input.addEventListener("change", async (event) => {
             const reader = new FileReader();
             let arrayifiedCsv = [];
             reader.readAsText(event.target.files[0])
-            reader.onload = () => {
+            reader.onload = async ()=>  {
                 const csvContent = reader.result;
                 let splittedCSV=csvContent.split("\n")
                 splittedCSV.forEach(row => {

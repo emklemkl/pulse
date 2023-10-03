@@ -1,8 +1,5 @@
-require("dotenv").config(); 
-const mailgun = require('mailgun-js')({
-    apiKey: process.env.MAILGUN_API_KEY,
-    domain: sandboxea48dd0fd38b4069930b1b9988cdbddd.mailgun.org,
-});
+require("dotenv").config();
+const nodemailer = require('nodemailer');
 /**
  * @module pulse
  * @author Emil Karlsson
@@ -76,14 +73,11 @@ async function addTeamMembers(user_info) {
         console.log("asdsadsad",user);
         const db = await mysql.createConnection(config);
         res = await db.query(sql, user);
+
         console.log("p_add_team_members RES:",res[0]);
+        sendMail();
         return res;
     });    
-
-    const formData = require('form-data');
-    const Mailgun = require('mailgun.js');
-    const mailgun = new Mailgun(formData);
-    const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
 }
 
 /**
@@ -113,6 +107,30 @@ async function compareApiKey(key) {
     return false
 }
 
+function sendMail() {
+    const transporter = nodemailer.createTransport({
+        port: 465,               // true for 465, false for other ports
+        host: "smtp.gmail.com",
+        auth: {
+                user: 'pulseproject23bth@gmail.com',
+                pass: `${process.env.GMAIL_PW}`,
+            },
+        });
+        const mailOptions = { 
+            from: 'pulseproject23bth@gmail.com',  // sender address
+            to: 'emkl21@student.bth.se',   // list of receivers
+            subject: 'Sending Email using Node.js process.env',
+            text: 'That was easy!',
+            html: '<b>Hey there! "This is our first message sent with Nodemailer<br/>"</b>'
+                    
+            };
+            transporter.sendMail(mailOptions, function (err, info) {
+                if(err)
+                console.log(err)
+                else
+                console.log(info);
+    });
+}
 module.exports = {
     getAllEmployees: getAllEmployees,
     loginAuth: loginAuth,

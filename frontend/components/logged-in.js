@@ -8,24 +8,11 @@ export default class LoggedIn extends HTMLElement {
         this.name = "Project Pulse2";
     }
 
-    //component attributes
-    // static get observedAttributes() {
-    //     return ["name"]
-    // }
-
     async reports() {
         const result = await proj.reports();
         console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
         return result;
     }
-
-    // attribute change
-    // attributeChangedCallback(property, oldValue, newValue) {
-    //     if (oldValue === newValue) {
-    //         return
-    //     }
-    //     this[property] = newValue;
-    // }
 
     // connect component
     async connectedCallback() {
@@ -44,10 +31,7 @@ export default class LoggedIn extends HTMLElement {
             ul.appendChild(li);
 
         });
-        
-        // let div = document.createElement("div");
-        // div.classList.add("logged-as"); // Gör en ruta som visar vem som är inloggad.
-        // div.innerHTML=`<h3>User: ${auth.userId}</h3><h3>Role: ${auth.token}</h3>`
+
         this.innerHTML = "<user-info></user-info>"
         divUl.appendChild(ul)
         this.appendChild(divUl);

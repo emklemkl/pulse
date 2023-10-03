@@ -3,7 +3,9 @@ import { apiKey, baseURL } from "./../utils.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IlBlbGxlMSIsInJvbGUiOiJQTSIsImlhdCI6MTY5NjIyMjEyNiwiZXhwIjoxNjk2MzA4NTI2fQ.oZEftCar1CQ0BGeVKK-FZy6MprZ_4nB6sdAnl2B-1tk",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6Ik5hbW4gTmFtbnNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTYzMjE5MzcsImV4cCI6MTY5NjQwODMzN30.p53FFox3OtXCUfbsE7EHn9gJ5g8xqNZ2wEeS6t6V2Vw"
+    // token: ""
+    ,
 
     login: async function login(userId, password) {
         const user = {
@@ -22,6 +24,7 @@ const auth = {
 
         // Function for parsing JWT into human readable text.
         function parseJwt(result) {
+            console.log(result);
             if (!result) {
             return;
             }

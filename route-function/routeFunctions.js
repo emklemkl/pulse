@@ -47,7 +47,7 @@ async function getProjects(req, res) {
 
 async function getTeam(req, res) {
     let res2 = await pulse.getTeamMembers()
-        res.json(res2);
+    res.json(res2);
 
 }
 
