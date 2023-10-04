@@ -21,15 +21,51 @@
     }
 }
 
-.logged-as {
+textarea {
+    font-size: 1rem !important; 
+}
+.create-project {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    background-color: transparentize($lighter-orange,0.8);
-    border: 2px solid transparentize($lighter-orange,0.6) ;
-    color: transparentize($font-color-black, 0.2);
-    max-width: 24rem;
-    max-height: 30rem;
-    padding: 1.6rem;
-    border-radius: $border-rad-data;
+    flex-direction: row;
+    max-width: 50rem;
+    gap: 3rem;
+    
+    > div {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+    
+    .input {
+        font-size: 1.6rem;
+        margin-bottom: 1.4rem;
+        padding: 0.7rem;
+        border-radius: $border-rad-button;
+        border: 0.25rem $font-color-black solid;
+    }
+    
+    .input-desc {
+        font-size: 1.6rem;
+        margin-bottom: 1.4rem;
+        padding: 0.7rem;
+        border-radius: $border-rad-button;
+        border: 0.25rem $font-color-black solid;
+        min-height: 9rem;
+
+    }
+
+    .button {
+        border-radius: $border-rad-button;
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-bottom: 1.4rem;
+        padding: 0.7rem;
+        background-color: $lighter-orange;
+    }
+}
+
+.checkbox-members {
+    display: flex;
+    flex-direction: row !important;
+    font-size: 1.6rem;
 }

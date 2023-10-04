@@ -7,3 +7,7 @@ python3 -m http.server 9000
 # Api-key middleware är utkommenterad ATM
 
 # Döpte om authorization (api key ) till my-api-key i auth.
+
+# i servern så är automailfunktionen utkommenterad när man registrerar nya TM/PM
+
+#if (isPwValid) är utkommenterad i loginAuth

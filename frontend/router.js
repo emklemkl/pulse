@@ -15,16 +15,26 @@ export default class Router extends HTMLElement {
                 name: "Overview",
             },
             "reports": {
-                view: "<div class='container'><test-route></test-route></div>",
+                view: "<div class='container'><reports-view></reports-view></div>",
                 name: "Reports",
             },
             "projects": {
                 view: "<div class='container'><projects-view></projects-view></div>",
                 name: "Projects",
             },
+            "create-project": {
+                view: "<div class='container'><create-project-view></create-project-view></div>",
+                name: "Create project",
+                hidden: true
+            },
             "team": {
                 view: "<team-view class='container'></team-view>",
                 name: "Team",
+            },
+            "dummy": {
+                view: "<dummy-refresh></dummy-refresh>",
+                name: "Dummy",
+                hidden: true
             }
         };
     }

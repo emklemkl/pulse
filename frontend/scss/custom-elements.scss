@@ -24,18 +24,7 @@ login-view {
 }
 
 user-info {
-    .logged-as {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        background-color: transparentize($lighter-orange,0.8);
-        border: 2px solid transparentize($lighter-orange,0.6) ;
-        color: transparentize($font-color-black, 0.2);
-        max-width: 24rem;
-        max-height: 30rem;
-        padding: 1.6rem;
-        border-radius: $border-rad-data;
-    
+
         button {
             display: flex;
             justify-content: center;
@@ -57,5 +46,37 @@ user-info {
             border: 2px solid transparentize($lighter-orange,0.5) ;
             color: transparentize($font-color-black, 0.2);
         }
+}
+
+// Flyttade ur denna från user-info då den påverkar sidorutorna i appen
+.side-bars {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: transparentize($lighter-orange,0.8);
+    border: 2px solid transparentize($lighter-orange,0.6) ;
+    color: transparentize($font-color-black, 0.2);
+    max-width: 15rem;
+    max-height: 30rem;
+    padding: 1.6rem;
+    border-radius: $border-rad-data;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+}
+input::file-selector-button {
+    background-color: orange;
+    color: #f8f8f8;
+    font-size: 1.4rem;
+    border-radius: $border-rad-button;
+    border: none;
+    max-width: 100%;
+    max-height: 10rem;
+    padding: $button-padding
+}
+input[type="file"] {
+    font-size: 0;
 }

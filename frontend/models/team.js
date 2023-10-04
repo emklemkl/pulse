@@ -20,7 +20,6 @@ const team = {
     },
 
     addTeamMember: async function addTeamMember(newTeamMembersArray) {
-            console.log("addTeamMember:",newTeamMembersArray);
             const response = await fetch(`${baseURL}/add-team-member`, {
                 method: "POST",
                 headers: {
@@ -29,9 +28,9 @@ const team = {
                 },
                 body: JSON.stringify(newTeamMembersArray)
                 });
-            const result = await response.json();
-            
-            // console.log("hej");
+            // console.log(response);
+            // const result = await response.json();
+            // console.log(result);
             // return result[0];
         },
     

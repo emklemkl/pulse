@@ -8,9 +8,6 @@ export default class ShowProjects extends HTMLElement {
         this.name = "Project Pulse2";
     }
 
-    // static get observedAttributes()
-
-
     async projects() {
         const result = await proj.projects();
         console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
@@ -29,16 +26,18 @@ export default class ShowProjects extends HTMLElement {
             li.classList.add("closed-list")
             li.innerHTML = `${project.name} (id:${project.id}) \nTotal reports: ${project.total_reports}  <button class="li-button">Open</button>`
             li.addEventListener("click", (event) => {
-
             });
             ul.appendChild(li);
 
         });
         
-        // let div = document.createElement("div");
-        // div.classList.add("logged-as"); // Gör en ruta som visar vem som är inloggad.
-        // div.innerHTML=`<h3>User: ${auth.userId}</h3><h3>Role: ${auth.token}</h3>`
-        this.innerHTML = "<user-info></user-info>"
+        const userInfo = document.createElement("div");
+        userInfo.innerHTML = "<user-info></user-info>";
+        const projectAdd = document.createElement("div");
+        projectAdd.innerHTML = "<project-add></project-add>"
+
+        this.appendChild(userInfo);
         this.appendChild(ul);
+        this.appendChild(projectAdd);
     }
 }

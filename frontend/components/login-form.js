@@ -38,10 +38,7 @@ export default class LoginForm extends HTMLElement {
         auth.userId = ""; // Logs out user
 
         let form = document.createElement("form");
-        // form.setAttribute("method", "POST")
         form.classList.add("login");
-        
-        // form.classname = "login-form";
         
         form.addEventListener("submit", (event) => {
             event.preventDefault();

@@ -33,5 +33,20 @@ const proj = {
             return result[0];
         },
     
+
+        createProject: async function createProject() {
+            const response = await fetch(`${baseURL}/create/projects`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                    "content-type": "application/json"
+                },
+            });
+            const result = await response.json();
+            
+            console.log("hej");
+            return result[0];
+        },
+    
 }
 export default proj;

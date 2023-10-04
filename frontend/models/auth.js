@@ -3,9 +3,11 @@ import { apiKey, baseURL } from "./../utils.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6Ik5hbW4gTmFtbnNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTYzMjE5MzcsImV4cCI6MTY5NjQwODMzN30.p53FFox3OtXCUfbsE7EHn9gJ5g8xqNZ2wEeS6t6V2Vw"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDA5NDc2LCJleHAiOjE2OTY0OTU4NzZ9.lv_UHsNRe_NUr4RSyz2g1M0fS3WgZucRa3Ixxk02YH4"
     // token: ""
     ,
+    refreshThisPage: "",
+    
 
     login: async function login(userId, password) {
         const user = {
