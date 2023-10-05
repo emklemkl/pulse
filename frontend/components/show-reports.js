@@ -19,7 +19,6 @@ export default class ShowReports extends HTMLElement {
         let divUl = document.createElement("div");
         divUl.innerHTML = "<h3>Submitted reports</h3>"
         let reports = await this.reports();
-        console.log("------------------->",reports);
         reports.forEach(report => {
             let li = document.createElement("li")
             li.classList.add("closed-list", "unread")

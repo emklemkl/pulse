@@ -19,11 +19,6 @@ const proj = {
     },
 
     report: async function report(id) {
-        
-        console.log("ASDSAD");
-        console.log("ASDSAD");
-        console.log("ASDSAD");
-        console.log("ASDSAD");
         const response = await fetch(`${baseURL}/report/${id}`, {
             method: "GET",
             headers: {

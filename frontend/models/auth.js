@@ -37,7 +37,15 @@ const auth = {
         
           // loggedin user
         const decodedToken = parseJwt(result)
-
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken);
         // JWT is set as the token for user.
         auth.token = result;
 

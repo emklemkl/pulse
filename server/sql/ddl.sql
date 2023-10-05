@@ -20,7 +20,7 @@ DROP PROCEDURE IF EXISTS p_find_matching_user;
 DELIMITER ;;
 CREATE PROCEDURE p_find_matching_user(a_id INT)
 	BEGIN
-		SELECT id, `password`, `role` FROM user_data
+		SELECT id, `name`, `password`, `role` FROM user_data
 			WHERE id = a_id;
     END
 ;;
