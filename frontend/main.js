@@ -20,8 +20,12 @@ customElements.define('team-view', TeamView );
 
 import ShowProjects from "./components/show-projects.js";
 import ProjectsView from "./views/projects-view.js";
+import ReadReportView from "./views/read-report-view.js";
+import ReadReport from "./components/read-report.js";
 customElements.define('show-projects', ShowProjects);
+customElements.define('read-report', ReadReport);
 customElements.define('projects-view', ProjectsView);
+customElements.define('read-report-view', ReadReportView);
 
 import CreateProject from "./components/create-project.js";
 import CreateProjectView from "./views/create-project-view.js";

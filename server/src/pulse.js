@@ -27,14 +27,25 @@ async function getAllEmployees() {
 }
 
 /**
- * @function getAllEmployees
- * @returns Employees found in db
+ * @function getAllReports
+ * @returns Gets all sent reports from db
  */
 async function getAllReports() {
     sql = "CALL p_get_all_reports()";
     const db = await mysql.createConnection(config);
     res = await db.query(sql);
     console.log(res[0]);
+    return res;
+}
+
+/**
+ * @function getReport
+ * @returns Gets a specifik report from db
+ */
+async function getReport(report_id) {
+    sql = "CALL p_get_a_report(?)";
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql, [report_id]);
     return res;
 }
 
@@ -100,6 +111,27 @@ async function loginAuth(id, pw) {
     return {status: "fail"};
 }
 
+/**
+ * @function createNewProject
+ */
+async function createNewProject(setup) {
+    sql = "CALL p_add_new_project(?,?,?,?)";
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql,[setup.projectName, setup.startDate, setup.reportFreq, setup.description]);
+    await assignTeamMemberToProj(res[0][0].inserted_id, setup.projectTeam)
+} 
+
+/**
+ * @function assignTeamMemberToProj
+ */
+async function assignTeamMemberToProj(projectId, projectTeamId) {
+    sql = "CALL p_assign_tm_to_proj(?,?)";
+    await projectTeamId.forEach(async (member) => {
+        const db = await mysql.createConnection(config);
+        await db.query(sql,[projectId, member]);
+    })
+} 
+
 async function comparePassWord(pw, hashedPw) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(pw, hashedPw, function(err, result) {
@@ -157,9 +189,11 @@ module.exports = {
     getAllEmployees: getAllEmployees,
     loginAuth: loginAuth,
     getAllReports: getAllReports,
+    getReport: getReport,
     getAllProjects: getAllProjects,
     getTeamMembers: getTeamMembers,
     addTeamMembers: addTeamMembers,
     encrypt: encrypt,
+    createNewProject: createNewProject,
 } 
     

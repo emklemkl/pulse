@@ -18,6 +18,11 @@ export default class Router extends HTMLElement {
                 view: "<div class='container'><reports-view></reports-view></div>",
                 name: "Reports",
             },
+            "read_report": {
+                view: "<div class='container'><read-report-view></read-report-view></div>",
+                name: "Read report",
+                hidden: true
+            },
             "projects": {
                 view: "<div class='container'><projects-view></projects-view></div>",
                 name: "Projects",

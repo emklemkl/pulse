@@ -17,10 +17,9 @@ export default class ShowTeam extends HTMLElement {
     // connect component
     async connectedCallback() {
         let ul = document.createElement("ul");
+        ul.classList.add("main-content-background")
         let teamRes = await this.team();
 
-        // ------------------------------------------------------Gör en function med eventl. /alerantivt uppdatera i eventl för <input> 
-        // -----------------------------------------------------------för att refresha listan med anställda efter uppladdning?
         teamRes.forEach(member => {
             console.log(member);
             let li = document.createElement("li")

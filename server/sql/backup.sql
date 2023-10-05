@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS `reports`;
 DROP TABLE IF EXISTS `user_data`;
 DROP TABLE IF EXISTS `projects`;
 
+
 CREATE TABLE `user_data` (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, # AUTO increments starts at 1000
 	`name` VARCHAR(100),
@@ -67,8 +68,6 @@ CREATE TABLE `reports` (
     `proj_id_report` INT(2) NOT NULL,
     `submitted_by_user` INT,
     `submitted_report` VARCHAR(9999),
-    `comments` VARCHAR(4000),
-    `read` BOOL,
     FOREIGN KEY (`proj_id_report`) REFERENCES `projects`(`id`)
 );
 ALTER TABLE `reports` AUTO_INCREMENT = 100; # Changes the start value for AUTO_INC
@@ -93,37 +92,6 @@ END
 ;;
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS p_add_new_project;
-DELIMITER ;;
-CREATE PROCEDURE p_add_new_project(
-	a_name VARCHAR(100),
-	a_start_date DATE,
-    a_report_freq INT,
-    a_description VARCHAR(5000)
-    )
-BEGIN
-    INSERT INTO 
-		projects(`name`, `project_start`,`report_frequency`, `description`)
-			VALUES (a_name, a_start_date, a_report_freq, a_description);
-SELECT LAST_INSERT_ID() as "inserted_id" FROM projects;
-END
-;;
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS p_assign_tm_to_proj;
-DELIMITER ;;
-CREATE PROCEDURE p_assign_tm_to_proj(
-	a_proj_id INT,
-    a_team_member_id INT
-    )
-BEGIN
-    INSERT INTO 
-		`user_to_proj`(`proj_id`,`user_id`)
-			VALUES (a_proj_id, a_team_member_id);
-END
-;;
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS p_add_user_password;
 DELIMITER ;;
 CREATE PROCEDURE p_add_user_password(
@@ -133,19 +101,6 @@ BEGIN
 UPDATE user_data ud SET `password`= a_pw_hash
     WHERE
         ud.id = a_id;
-END
-;;
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS p_get_a_report;
-DELIMITER ;;
-CREATE PROCEDURE p_get_a_report(
-	a_id INT)
-BEGIN
-	SELECT r.id, r.proj_id_report, r.submitted_by_user, r.submitted_report, r.comments, r.read, u.name FROM reports r
-    RIGHT JOIN user_data u ON u.id = r.submitted_by_user
-    WHERE
-        r.id = a_id;
 END
 ;;
 DELIMITER ;
@@ -174,10 +129,18 @@ CREATE PROCEDURE p_get_all_projects()
 BEGIN
     SELECT
         p.id,
+        COUNT(r.id) AS total_reports,
         p.name,
-        p.description
+        p.description,
+        r.id AS "reportid"
     FROM
-        projects p;
+        projects p
+    JOIN
+        reports r ON r.proj_id_report = p.id
+    GROUP BY
+        p.id
+    ORDER BY
+        p.id;
 END
 ;;
 DELIMITER ;
@@ -186,7 +149,7 @@ INSERT INTO projects(`name`, `description`) VALUES ("Project Test", "Testa teste
 INSERT INTO projects(`name`, `description`) VALUES ("Project Test2", PASSWORD("Test"));
 #INSERT INTO user_to_proj VALUES (1001, 10);
 #INSERT INTO user_to_proj VALUES (1002, 10);
-INSERT INTO user_data(`name`,mail,address,phone,`role`, ssn,`password`) VALUES ("Emil Karlsson","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111",'$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa');
+INSERT INTO user_data(`name`,mail,address,phone,`role`,ssn) VALUES ("Emil Karlsson","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111");
 INSERT INTO user_data(`name`,mail,address,phone,`role`,ssn) VALUES ("Jane Doe","emil_ffs1994@hotmail.com","Ronneby väg 1 14345","0709111112","TM","9999991212");
 INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
 VALUES ("John Smith", "john.smith@example.com", "123 Main St, Anytown, USA", "555-123-4567", "TM", "123456789");
@@ -204,7 +167,6 @@ INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) V
  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
 select * from user_data;
-explain select * from user_to_proj WHERE proj_id = 13;
 select * from user_to_proj;
 select * from projects;
 select * from reports;

@@ -1,6 +1,6 @@
-import auth from "../models/auth.js";
 import team from "../models/team.js";
 import proj from "../models/proj.js";
+
 export default class CreateProject extends HTMLElement {
     constructor() {
         super();
@@ -10,11 +10,12 @@ export default class CreateProject extends HTMLElement {
     }
 
     async createProject() {
-        console.log(this.projectData);
-        console.log(this.checkedMembers);
-        // const result = await proj.createProject();
-        // console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
-        // return result;
+        this.projectData = {
+            ...this.projectData,
+            projectTeam: this.checkedMembers,
+        };
+        await proj.createProject(this.projectData);
+        location.hash = "projects"
     }
 
     async team() {
@@ -28,10 +29,12 @@ export default class CreateProject extends HTMLElement {
         const availableReportFreq = [1,7,14,30] // Every X days.
         let form = document.createElement("form");
 
-        form.classList.add("create-project");
+        form.classList.add("create-project", "main-content-background");
         
         let divInForm = document.createElement("div");
+        divInForm.classList.add("scroll")
         let secondDivInForm = document.createElement("div");
+        secondDivInForm.classList.add("scroll")
 
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -117,7 +120,7 @@ export default class CreateProject extends HTMLElement {
         submitButton.setAttribute("value", "Create");
         submitButton.classList.add("create-button");
         divInForm.appendChild(description)
-
+        divInForm.appendChild(submitButton);
         teamMembers.forEach((member) => {
             
             let inputContainer = document.createElement("div")
@@ -146,15 +149,12 @@ export default class CreateProject extends HTMLElement {
             inputContainer.appendChild(label);
             secondDivInForm.appendChild(inputContainer);
         })
-
-        secondDivInForm.appendChild(submitButton);
+        
         form.appendChild(divInForm);
         form.appendChild(secondDivInForm);
         const userInfo = document.createElement("div");
         userInfo.innerHTML = "<user-info></user-info>";
         this.appendChild(userInfo);
         this.appendChild(form);
-
-
     }
 }

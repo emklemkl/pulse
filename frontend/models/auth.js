@@ -3,7 +3,7 @@ import { apiKey, baseURL } from "./../utils.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDA5NDc2LCJleHAiOjE2OTY0OTU4NzZ9.lv_UHsNRe_NUr4RSyz2g1M0fS3WgZucRa3Ixxk02YH4"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDg5OTU4LCJleHAiOjE2OTY1NzYzNTh9.00DHUSojQSBBBEqOnM5vGjyjKOdSBwhK3BJ4wXTWlcg"
     // token: ""
     ,
     refreshThisPage: "",

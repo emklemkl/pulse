@@ -11,3 +11,7 @@ python3 -m http.server 9000
 # i servern så är automailfunktionen utkommenterad när man registrerar nya TM/PM
 
 #if (isPwValid) är utkommenterad i loginAuth
+
+# ändra till let report = await this.report(proj.selectReport); i read-report
+
+# unkommentera // if (!proj.selectReport) {location.hash = "reports";} i read-report-view

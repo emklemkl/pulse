@@ -29,13 +29,18 @@ textarea {
     flex-direction: row;
     max-width: 50rem;
     gap: 3rem;
-    
+
     > div {
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
-    }
+        max-height: 30rem;
+        @include scrollbar();
     
+    label {
+        margin: 0 $button-padding;
+    }
+}
     .input {
         font-size: 1.6rem;
         margin-bottom: 1.4rem;
@@ -68,4 +73,5 @@ textarea {
     display: flex;
     flex-direction: row !important;
     font-size: 1.6rem;
+    margin-bottom: $button-padding;
 }

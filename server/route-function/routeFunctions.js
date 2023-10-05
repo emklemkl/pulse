@@ -33,6 +33,12 @@ async function getReports(req, res) {
         res.json(res2);
 }
 
+async function getReport(req, res) {
+    console.log(req.params.id);
+    let res2 = await pulse.getReport(req.params.id)
+    res.json(res2);
+}
+
 async function addTeamMembers(req, res) {
     let res2 = await pulse.addTeamMembers(req.body)
         res.json(res2);
@@ -41,7 +47,12 @@ async function addTeamMembers(req, res) {
 async function getProjects(req, res) {
     let res2 = await pulse.getAllProjects()
     res.json(res2);
+}
 
+
+async function createProject(req, res) {
+    await pulse.createNewProject(req.body)
+    res.json({status: "Project added"});
 }
 
 async function getTeam(req, res) {
@@ -64,5 +75,8 @@ module.exports = {
     getProjects: getProjects,
     indexRoute: indexRoute,
     getTeam: getTeam,
-    addTeamMembers: addTeamMembers
+    addTeamMembers: addTeamMembers,
+    createProject: createProject,
+    // getProject: getProject,
+    getReport: getReport
 } 

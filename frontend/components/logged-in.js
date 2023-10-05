@@ -17,6 +17,7 @@ export default class LoggedIn extends HTMLElement {
     // connect component
     async connectedCallback() {
         let ul = document.createElement("ul");
+        ul.classList.add("main-content-background")
         let divUl = document.createElement("div");
         divUl.innerHTML = "<h3>Recently submitted reports</h3>"
         let reports = await this.reports();

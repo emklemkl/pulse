@@ -7,37 +7,33 @@ export default class ShowReports extends HTMLElement {
         this.name = "Project Pulse2";
     }
 
-    // static get observedAttributes()
-
-
-    async projects() {
-        const result = await proj.projects();
-        console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
+    async reports() {
+        const result = await proj.reports();
         return result;
     }
-
-    // attributeChangedCallback(property, oldValue, newValue) 
 
     // connect component
     async connectedCallback() {
         let ul = document.createElement("ul");
-        let projects = await this.projects();
-        projects.forEach(project => {
-            console.log(project);
+        ul.classList.add("main-content-background")
+        let divUl = document.createElement("div");
+        divUl.innerHTML = "<h3>Submitted reports</h3>"
+        let reports = await this.reports();
+        console.log("------------------->",reports);
+        reports.forEach(report => {
             let li = document.createElement("li")
-            li.classList.add("closed-list")
-            li.innerHTML = `${project.name} (id:${project.id}) \nTotal reports: ${project.total_reports}  <button class="li-button">Open</button>`
+            li.classList.add("closed-list", "unread")
+            li.textContent = `R:${report.reportid} | ${report.name} \nReport ${report.submitted_report}`
             li.addEventListener("click", (event) => {
-
+                location.hash = `read_report`
+                proj.selectReport = report.reportid;
             });
             ul.appendChild(li);
 
         });
-        
-        const userInfo = document.createElement("div");
-        userInfo.innerHTML = "<user-info></user-info>";
 
-        this.appendChild(userInfo);
-        this.appendChild(ul);
+        this.innerHTML = "<user-info></user-info>"
+        divUl.appendChild(ul)
+        this.appendChild(divUl);
     }
 }

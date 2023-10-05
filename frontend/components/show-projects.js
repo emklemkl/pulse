@@ -13,12 +13,10 @@ export default class ShowProjects extends HTMLElement {
         console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
         return result;
     }
-
-    // attributeChangedCallback(property, oldValue, newValue) 
-
     // connect component
     async connectedCallback() {
         let ul = document.createElement("ul");
+        ul.classList.add("main-content-background")
         let projects = await this.projects();
         projects.forEach(project => {
             console.log(project);

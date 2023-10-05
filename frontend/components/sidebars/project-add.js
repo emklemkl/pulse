@@ -1,5 +1,4 @@
 "use strict"
-import auth from "../../models/auth.js";
 /**
  * @module ProjectAdd
  * @description Holds the user-add component seen on "team"view. 
