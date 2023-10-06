@@ -21,6 +21,7 @@ export default class ShowReports extends HTMLElement {
         let reports = await this.reports();
         reports.forEach(report => {
             let li = document.createElement("li")
+            report.read ? li.classList.add("closed-list", "read") : li.classList.add("closed-list", "unread")
             li.classList.add("closed-list", "unread")
             li.textContent = `R:${report.reportid} | ${report.name} \nReport ${report.submitted_report}`
             li.addEventListener("click", (event) => {

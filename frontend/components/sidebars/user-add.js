@@ -40,8 +40,7 @@ export default class UserAdd extends HTMLElement {
                     arrayifiedCsv.push(row.split(","));
                 });
                 await team.addTeamMember(arrayifiedCsv)
-                auth.refreshThisPage = window.location.hash;
-                window.location.hash = "dummy"
+                auth.refreshJs()
             };
         });
         form.appendChild(input);

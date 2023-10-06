@@ -1,16 +1,14 @@
-import auth from "../models/auth.js";
-import proj from "../models/proj.js";
-import {baseURL} from "../utils.js";
-export default class LoggedIn extends HTMLElement {
+import auth from "../../models/auth.js";
+import proj from "../../models/proj.js";
+import {baseURL} from "../../utils.js";
+export default class ShowTMReports extends HTMLElement {
     constructor() {
         super();
-
         this.name = "Project Pulse2";
     }
 
     async reports() {
         const result = await proj.reports();
-        console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
         return result;
     }
 
@@ -19,15 +17,17 @@ export default class LoggedIn extends HTMLElement {
         let ul = document.createElement("ul");
         ul.classList.add("main-content-background")
         let divUl = document.createElement("div");
-        divUl.innerHTML = "<h3>Recently submitted reports</h3>"
+        divUl.innerHTML = "<h3>TM VIEW</h3>"
         let reports = await this.reports();
         reports.forEach(report => {
             let li = document.createElement("li")
-            report.read ? li.classList.add("closed-list", "read") : li.classList.add("closed-list", "unread")
-            li.textContent = `R:${report.reportid} | Project ${report.name} (id:${report.id}) \nReport ${report.submitted_report}`
+            li.classList.add("closed-list", "unread")
+            // report.read ? li.classList.add("closed-list", "read") : li.classList.add("closed-list", "unread")
+            li.classList.add("closed-list", "unread")
+            li.textContent = `R:${report.reportid} | ${report.name} \nReport ${report.submitted_report}`
             li.addEventListener("click", (event) => {
-                event.target.classList.toggle("closed-list");
-                event.target.classList.toggle("open-list");
+                location.hash = `read_report`
+                proj.selectReport = report.reportid;
             });
             ul.appendChild(li);
 

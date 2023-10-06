@@ -21,6 +21,7 @@ app.get("/report/:id", mw.authToken, rf.getReport);
 app.get("/team", mw.authToken, rf.getTeam);
 
 app.post("/add-team-member", mw.authToken, rf.addTeamMembers);
+app.post("/add_comment/report", mw.authToken, rf.addComment);
 
 app.get("/projects", mw.authToken, rf.getProjects);
 

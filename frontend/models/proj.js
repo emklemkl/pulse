@@ -57,6 +57,22 @@ const proj = {
             });
             await response.json();
         },
-    
+
+        addComment: async function addComment(commentAndRead) {
+            console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
+            console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
+            console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
+            console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
+            console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
+            const response = await fetch(`${baseURL}/add_comment/report`, {
+                body: JSON.stringify(commentAndRead),
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                    "content-type": "application/json"
+                },
+            });
+            // await response.json();
+        },
 }
 export default proj;

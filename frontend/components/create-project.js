@@ -15,7 +15,7 @@ export default class CreateProject extends HTMLElement {
             projectTeam: this.checkedMembers,
         };
         await proj.createProject(this.projectData);
-        location.hash = "projects"
+        // location.hash = "projects"
     }
 
     async team() {
@@ -35,7 +35,10 @@ export default class CreateProject extends HTMLElement {
         divInForm.classList.add("scroll")
         let secondDivInForm = document.createElement("div");
         secondDivInForm.classList.add("scroll")
-
+        let h3 = document.createElement("h3")
+        h3.innerHTML = "Select team"
+        secondDivInForm.appendChild(h3);
+        
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             this.createProject();
@@ -54,7 +57,6 @@ export default class CreateProject extends HTMLElement {
                 ...this.projectData,
                 projectName: event.target.value,
             };
-            console.log(event.target.value);
         });
         divInForm.appendChild(projectName)
 
@@ -73,9 +75,25 @@ export default class CreateProject extends HTMLElement {
                 ...this.projectData,
                 startDate: event.target.value
             };
-            console.log(event.target.value);
         });
         divInForm.appendChild(startDate)
+
+        let endDate = document.createElement("input");
+        endDate.setAttribute("placeholder", "Add project end date")
+        endDate.setAttribute("type", "text");
+        endDate.setAttribute("name", "start-date");
+        endDate.setAttribute("required", "required");
+        endDate.addEventListener("click", (event) => {
+            event.target.type = "date"
+        })
+        endDate.classList.add("input");
+        endDate.addEventListener("input", (event) => {
+            this.projectData = {
+                ...this.projectData,
+                endDate: event.target.value
+            };
+        });
+        divInForm.appendChild(endDate)
         let submitButton = document.createElement("input");
         
         
@@ -151,6 +169,7 @@ export default class CreateProject extends HTMLElement {
         })
         
         form.appendChild(divInForm);
+
         form.appendChild(secondDivInForm);
         const userInfo = document.createElement("div");
         userInfo.innerHTML = "<user-info></user-info>";

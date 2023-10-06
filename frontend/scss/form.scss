@@ -27,16 +27,22 @@ textarea {
 .create-project {
     display: flex;
     flex-direction: row;
-    max-width: 50rem;
+    max-width: 60rem;
     gap: 3rem;
 
     > div {
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
-        max-height: 30rem;
+        max-height: 35rem;
         @include scrollbar();
     
+    input[type="checkbox"] {
+        width: 2rem;
+        height: 2rem;
+        margin-bottom: $border-rad-data;
+    }
+
     label {
         margin: 0 $button-padding;
     }

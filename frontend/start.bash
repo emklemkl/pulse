@@ -15,3 +15,7 @@ python3 -m http.server 9000
 # ändra till let report = await this.report(proj.selectReport); i read-report
 
 # unkommentera // if (!proj.selectReport) {location.hash = "reports";} i read-report-view
+
+# Role är hårdkodat som TM i i början på vissa vyer under tiden som TM utvecklas
+
+# // location.hash = "projects" är utkommenterad i create-project för att undvika redirect när jag skapar nya project i utveckling

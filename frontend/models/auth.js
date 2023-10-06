@@ -1,13 +1,18 @@
 "use strict";
 import { apiKey, baseURL } from "./../utils.js";
+import proj from "./proj.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDg5OTU4LCJleHAiOjE2OTY1NzYzNTh9.00DHUSojQSBBBEqOnM5vGjyjKOdSBwhK3BJ4wXTWlcg"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTY1NzE1NDUsImV4cCI6MTY5NjY1Nzk0NX0.MObz7VD5jPGcbhpFGBEsbHtn32LlpO94GbOCb7fNOmk"
     // token: ""
     ,
     refreshThisPage: "",
     
+    refreshJs: function refreshJs() {
+        auth.refreshThisPage = window.location.hash;
+        window.location.hash = "dummy"
+    },
 
     login: async function login(userId, password) {
         const user = {
@@ -37,15 +42,7 @@ const auth = {
         
           // loggedin user
         const decodedToken = parseJwt(result)
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
-        console.log(decodedToken);
+        
         // JWT is set as the token for user.
         auth.token = result;
 

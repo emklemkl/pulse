@@ -8,6 +8,12 @@ export default class ReportsView extends HTMLElement {
         // }
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
-        this.innerHTML = `<show-reports class='container'></show-reports`;
+        auth.role = "TM"
+        console.log("CURRENT ROLE:", auth.role);
+        if (auth.role === "TM") {
+            this.innerHTML = `<show-tm-reports class='container'></show-tm-reports>`;
+        } else if (auth.role === "PM") {
+            this.innerHTML = `<show-reports class='container'></show-reports>`;
+        }
     }
 }

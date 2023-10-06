@@ -32,6 +32,9 @@ import CreateProjectView from "./views/create-project-view.js";
 customElements.define('create-project-view', CreateProjectView);
 customElements.define('create-project', CreateProject);
 
+import ShowTMReports from "./components/tm-components/show-tm-reports.js";
+customElements.define('show-tm-reports', ShowTMReports);
+
 import ShowReports from "./components/show-reports.js";
 import ReportsView from "./views/reports-view.js";
 customElements.define('show-reports', ShowReports);

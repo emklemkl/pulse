@@ -31,14 +31,23 @@ ul {
         height: 3rem;
         list-style-type: none;
         padding: 0.7rem;
+        overflow: hidden;
         color: $font-color-black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
     }
     
     .unread {
         border-left: $red solid 4px;
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 0.4rem;
-        
+    }
+    .read {
+        border-left: $create-blue solid 4px;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 0.4rem;
     }
     
     li:hover {
@@ -47,7 +56,7 @@ ul {
 }
 
 .li-button {
-    background-color: #87ee90;
+    background-color: $lighter-orange;
     // border: 2px solid $orange ;
     font-size: 1.2rem;
     color: transparentize($font-color-black, 0.1);

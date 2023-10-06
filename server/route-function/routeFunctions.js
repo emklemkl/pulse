@@ -34,13 +34,19 @@ async function getReports(req, res) {
 }
 
 async function getReport(req, res) {
-    console.log(req.params.id);
     let res2 = await pulse.getReport(req.params.id)
+    console.log(res2[0]);
     res.json(res2);
 }
 
 async function addTeamMembers(req, res) {
     let res2 = await pulse.addTeamMembers(req.body)
+        res.json(res2);
+}
+
+async function addComment(req, res) {
+    console.log(req.body);
+    let res2 = await pulse.addComment(req.body)
         res.json(res2);
 }
 
@@ -51,7 +57,11 @@ async function getProjects(req, res) {
 
 
 async function createProject(req, res) {
+    console.log("🚀 ~ file: routeFunctions.js:61 ~ createProject ~ req.body:", req.body)
+    console.log("🚀 ~ file: routeFunctions.js:61 ~ createProject ~ req.body:", req.body)
     await pulse.createNewProject(req.body)
+    await pulse.generateReports(req.body.startDate, req.body.endDate, req.body.reportFreq)
+    
     res.json({status: "Project added"});
 }
 
@@ -78,5 +88,6 @@ module.exports = {
     addTeamMembers: addTeamMembers,
     createProject: createProject,
     // getProject: getProject,
-    getReport: getReport
+    getReport: getReport,
+    addComment: addComment
 } 

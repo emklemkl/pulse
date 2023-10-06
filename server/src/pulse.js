@@ -115,10 +115,39 @@ async function loginAuth(id, pw) {
  * @function createNewProject
  */
 async function createNewProject(setup) {
-    sql = "CALL p_add_new_project(?,?,?,?)";
+    sql = "CALL p_add_new_project(?,?,?,?,?)";
     const db = await mysql.createConnection(config);
-    res = await db.query(sql,[setup.projectName, setup.startDate, setup.reportFreq, setup.description]);
+    res = await db.query(sql,[setup.projectName, setup.startDate, setup.endDate, setup.reportFreq, setup.description]);
     await assignTeamMemberToProj(res[0][0].inserted_id, setup.projectTeam)
+} 
+
+function addXDays(date, days) {
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
+/**
+ * @function generateReports
+ */
+async function generateReports(startDate, endDate, freq) {
+    let startingDate = new Date(startDate);
+    let deadline = new Date(endDate);
+    console.log(startDate < endDate);
+    // while () {
+    //     const element = array[i];
+        
+    // }
+    addXDays(startingDate, parseInt(freq));
+
+} 
+
+/**
+ * @function addComment
+ */
+async function addComment(commentRead) {
+    sql = "CALL p_add_comment(?,?,?)";
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql,Object.values(commentRead));
 } 
 
 /**
@@ -195,5 +224,7 @@ module.exports = {
     addTeamMembers: addTeamMembers,
     encrypt: encrypt,
     createNewProject: createNewProject,
+    addComment: addComment,
+    generateReports: generateReports,
 } 
     

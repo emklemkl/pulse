@@ -1,10 +1,19 @@
 GET  http://localhost:1338/report/100 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDg5OTU4LCJleHAiOjE2OTY1NzYzNTh9.00DHUSojQSBBBEqOnM5vGjyjKOdSBwhK3BJ4wXTWlcg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTY1NzMxNjEsImV4cCI6MTY5NjY1OTU2MX0.X3cuexow5e4fxGEjmaWvrRTPg1-A86-78PYDH4RZkCI
 ###
 
 POST http://localhost:1338/create/project HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDA5NDc2LCJleHAiOjE2OTY0OTU4NzZ9.lv_UHsNRe_NUr4RSyz2g1M0fS3WgZucRa3Ixxk02YH4
+
+{
+    "add_new_members":[["'asddsa'","'asdasd'"],["aaaaaaaaa", "bbbbbbbbbbbbb"]]
+}
+###
+
+POST http://localhost:1338/add_comment/report HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTY1NzMxNjEsImV4cCI6MTY5NjY1OTU2MX0.X3cuexow5e4fxGEjmaWvrRTPg1-A86-78PYDH4RZkCI
 
 {
     "add_new_members":[["'asddsa'","'asdasd'"],["aaaaaaaaa", "bbbbbbbbbbbbb"]]

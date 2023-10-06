@@ -5,9 +5,9 @@ export default class ReadReportView extends HTMLElement {
     // connect component
     connectedCallback() {
 
-        // if (!proj.selectReport) {
-        //     location.hash = "reports";
-        // }
+        if (!proj.selectReport) {
+            location.hash = "reports";
+        }
         // if (!auth.token) {
         //     location.hash = "";
         // }
