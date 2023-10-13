@@ -15,7 +15,7 @@ export default class CreateProject extends HTMLElement {
             projectTeam: this.checkedMembers,
         };
         await proj.createProject(this.projectData);
-        // location.hash = "projects"
+        // location.hash = "projects" //###################                          UNCOMMENT THIS
     }
 
     async team() {
@@ -48,6 +48,9 @@ export default class CreateProject extends HTMLElement {
         let projectName = document.createElement("input");
 
         projectName.setAttribute("type", "text")
+
+        projectName.defaultValue = "my project"   //###################
+        
         projectName.setAttribute("name", "name")
         projectName.setAttribute("required", "required")
         projectName.classList.add("input");
@@ -63,8 +66,10 @@ export default class CreateProject extends HTMLElement {
 
         let startDate = document.createElement("input");
         startDate.setAttribute("placeholder", "Add project start date")
+        startDate.setAttribute( "autocomplete", "off" );
         startDate.setAttribute("type", "text");
         startDate.setAttribute("name", "start-date");
+        startDate.defaultValue = "2000-10-12"   //###################
         startDate.setAttribute("required", "required");
         startDate.addEventListener("click", (event) => {
             event.target.type = "date"
@@ -81,6 +86,8 @@ export default class CreateProject extends HTMLElement {
         let endDate = document.createElement("input");
         endDate.setAttribute("placeholder", "Add project end date")
         endDate.setAttribute("type", "text");
+        endDate.setAttribute( "autocomplete", "off" );
+        endDate.defaultValue = "2000-10-24"   //###################
         endDate.setAttribute("name", "start-date");
         endDate.setAttribute("required", "required");
         endDate.addEventListener("click", (event) => {
@@ -126,6 +133,7 @@ export default class CreateProject extends HTMLElement {
         description.setAttribute("placeholder", "Add project-description")
         description.setAttribute("name", "description");
         description.setAttribute("required", "required");
+        description.defaultValue = "A description"   //###################
         description.classList.add("input-desc");
         description.addEventListener("input", (event) => {
             this.projectData = {

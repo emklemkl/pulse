@@ -30,7 +30,7 @@ export default class Router extends HTMLElement {
             "create-project": {
                 view: "<div class='container'><create-project-view></create-project-view></div>",
                 name: "Create project",
-                hidden: true
+                hidden: true,
             },
             "team": {
                 view: "<team-view class='container'></team-view>",

@@ -8,9 +8,9 @@ export default class ReadReportView extends HTMLElement {
         if (!proj.selectReport) {
             location.hash = "reports";
         }
-        // if (!auth.token) {
-        //     location.hash = "";
-        // }
+        if (!auth.token) {
+            location.hash = "";
+        }
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
         this.innerHTML = `<read-report class='container'></read-report>`;

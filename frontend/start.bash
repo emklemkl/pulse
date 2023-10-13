@@ -10,7 +10,7 @@ python3 -m http.server 9000
 
 # i servern så är automailfunktionen utkommenterad när man registrerar nya TM/PM
 
-#if (isPwValid) är utkommenterad i loginAuth
+#if (isPwValid) är utkommenterad i pulse login
 
 # ändra till let report = await this.report(proj.selectReport); i read-report
 
@@ -19,3 +19,10 @@ python3 -m http.server 9000
 # Role är hårdkodat som TM i i början på vissa vyer under tiden som TM utvecklas
 
 # // location.hash = "projects" är utkommenterad i create-project för att undvika redirect när jag skapar nya project i utveckling
+
+#EFTER DEMO 2
+
+#Hidden nav behöver aktiveras i login view
+#   auth.role = "PM"; i auth behover tas bort
+#  // if (auth.role === "PM") { i olika views behöver kollas över
+# rader markerade med //################### ska tas bort i create-project

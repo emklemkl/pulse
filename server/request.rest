@@ -4,10 +4,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwI
 
 POST http://localhost:1338/create/project HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwicm9sZSI6IlBNIiwiaWF0IjoxNjk2NDA5NDc2LCJleHAiOjE2OTY0OTU4NzZ9.lv_UHsNRe_NUr4RSyz2g1M0fS3WgZucRa3Ixxk02YH4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTcxODM1MDYsImV4cCI6MTY5NzI2OTkwNn0.0hkWHX6c6Mz5Q_nmf6qbgzGvl6UZ4naNixoNiuzfsuc
 
 {
-    "add_new_members":[["'asddsa'","'asdasd'"],["aaaaaaaaa", "bbbbbbbbbbbbb"]]
+    "projectName": "Test",
+    "startDate": "2023-10-13",
+    "endDate": "2023-11-05",
+    "reportFreq": "1",
+    "description": "A descriptionsad a faeg rsdh dr",
+    "projectTeam": [ "1001", "1002" ]
 }
 ###
 
@@ -18,3 +23,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwI
 {
     "add_new_members":[["'asddsa'","'asdasd'"],["aaaaaaaaa", "bbbbbbbbbbbbb"]]
 }
+

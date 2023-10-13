@@ -83,9 +83,13 @@ CREATE TABLE `reports` (
     `submitted_report` VARCHAR(9999),
     `comments` VARCHAR(4000),
     `read` BOOL,
+    `due_date` DATE,
+    `sent` DATETIME,
     FOREIGN KEY (`proj_id_report`) REFERENCES `projects`(`id`)
 );
 ALTER TABLE `reports` AUTO_INCREMENT = 100; # Changes the start value for AUTO_INC
+
+
 
 DROP PROCEDURE IF EXISTS p_get_all_reports;
 DELIMITER ;;
@@ -107,7 +111,6 @@ BEGIN
 END
 ;;
 DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS p_add_new_project;
 DELIMITER ;;
@@ -217,6 +220,10 @@ INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) V
  fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. 
  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
+ INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) VALUES (10, 1001, "
+Morbi eu egestas erat. 
+ Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
+ Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
 select * from user_data;
 explain select * from user_to_proj WHERE proj_id = 13;
 select * from user_to_proj;
@@ -227,5 +234,6 @@ select password("test");
 select p.id, p.name, p.description, p.project_start, p.report_frequency from projects p
 JOIN user_to_proj utp ON p.id = utp.proj_id
 JOIN user_data ud ON ud.id = utp.user_id
-WHERE ud.id = 1002
+WHERE p.name = 1002
 GROUP BY p.id;
+select "ALL GOOD";

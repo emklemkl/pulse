@@ -6,7 +6,7 @@ export default class LoginView extends HTMLElement {
         auth.token = ""; // Logs out user
         auth.userId = ""; // Logs out user
         const nav = document.getElementsByTagName("navigation-outlet")[0];
-        nav.classList.add("hidden");
+        // nav.classList.add("hidden");
         this.innerHTML = `<login-form name="Login form"></login-form>`;
     }
 }

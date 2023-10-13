@@ -24,7 +24,7 @@ export default class ShowTMReports extends HTMLElement {
             li.classList.add("closed-list", "unread")
             // report.read ? li.classList.add("closed-list", "read") : li.classList.add("closed-list", "unread")
             li.classList.add("closed-list", "unread")
-            li.textContent = `R:${report.reportid} | ${report.name} \nReport ${report.submitted_report}`
+            li.textContent = `Create a report`
             li.addEventListener("click", (event) => {
                 location.hash = `read_report`
                 proj.selectReport = report.reportid;

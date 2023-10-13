@@ -4,7 +4,7 @@ import proj from "./proj.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTY1NzE1NDUsImV4cCI6MTY5NjY1Nzk0NX0.MObz7VD5jPGcbhpFGBEsbHtn32LlpO94GbOCb7fNOmk"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiUE0iLCJpYXQiOjE2OTcxODM1MDYsImV4cCI6MTY5NzI2OTkwNn0.0hkWHX6c6Mz5Q_nmf6qbgzGvl6UZ4naNixoNiuzfsuc"
     // token: ""
     ,
     refreshThisPage: "",
@@ -47,6 +47,7 @@ const auth = {
         auth.token = result;
 
         auth.role = decodedToken.role;
+        auth.role = "PM";
         auth.userId = decodedToken.userId;
         auth.name = decodedToken.name;
         return result;

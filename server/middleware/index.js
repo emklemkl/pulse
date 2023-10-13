@@ -40,6 +40,7 @@ function authToken(req, res, next) {
         req.user = user
         console.log("🚀 ~ file: server.js:49 ~ jwt.verify ~ user:", user)
     })
+    console.log("Adfsbdthn ftrd ht");
     next();
 }
 

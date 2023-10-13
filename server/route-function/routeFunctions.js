@@ -57,11 +57,9 @@ async function getProjects(req, res) {
 
 
 async function createProject(req, res) {
-    console.log("🚀 ~ file: routeFunctions.js:61 ~ createProject ~ req.body:", req.body)
-    console.log("🚀 ~ file: routeFunctions.js:61 ~ createProject ~ req.body:", req.body)
-    await pulse.createNewProject(req.body)
-    await pulse.generateReports(req.body.startDate, req.body.endDate, req.body.reportFreq)
-    
+    console.log("res.body",req.body);
+    const projId = await pulse.createNewProject(req.body)
+    await pulse.generateReports(req.body.startDate, req.body.endDate, req.body.reportFreq, req.body.projectTeam, projId)
     res.json({status: "Project added"});
 }
 

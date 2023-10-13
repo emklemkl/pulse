@@ -81,15 +81,11 @@ async function addTeamMembers(user_info) {
     sql = "CALL p_add_new_team_members(?,?,?,?,?,?,?)";
     const [ , ...users] = user_info
     const defaultPassword = await encrypt("test");
-    console.log("DEFAULT", defaultPassword);
-    console.log("DEFAULT", defaultPassword);
-    console.log("DEFAULT", defaultPassword);
     users.forEach(async user =>  {
         user.push(defaultPassword);
         console.log(user);
         const db = await mysql.createConnection(config);
         res = await db.query(sql, user);
-
         console.log("p_add_team_members RES:",res[0]);
         sendMail();
         return res;
@@ -105,9 +101,9 @@ async function loginAuth(id, pw) {
     const db = await mysql.createConnection(config);
     res = await db.query(sql,[id]);
     const isPwValid = await comparePassWord(pw, res[0][0].password);
-    // if (isPwValid) {
+    if (isPwValid) {
         return {role: res[0][0].role, name: res[0][0].name, status: "ok"};
-    // }
+    }
     return {status: "fail"};
 }
 
@@ -119,6 +115,7 @@ async function createNewProject(setup) {
     const db = await mysql.createConnection(config);
     res = await db.query(sql,[setup.projectName, setup.startDate, setup.endDate, setup.reportFreq, setup.description]);
     await assignTeamMemberToProj(res[0][0].inserted_id, setup.projectTeam)
+    return res[0][0].inserted_id
 } 
 
 function addXDays(date, days) {
@@ -129,16 +126,38 @@ function addXDays(date, days) {
 /**
  * @function generateReports
  */
-async function generateReports(startDate, endDate, freq) {
-    let startingDate = new Date(startDate);
+async function generateReports(startDate, endDate, freq, team, projId) {
+    let start= new Date(startDate);
     let deadline = new Date(endDate);
-    console.log(startDate < endDate);
-    // while () {
-    //     const element = array[i];
-        
-    // }
-    addXDays(startingDate, parseInt(freq));
+    deadline.setDate(deadline.getDate() + 1)
+    const reportFrequency = parseInt(freq)
+    const db = await mysql.createConnection(config);
+    let yyyymmdd;
+    while (deadline > start) {
+        sql = "CALL p_create_reports(?,?,?)";
+        if (start.getDay() !== 6 && start.getDay() !== 0) {
+            const year = start.getFullYear();
+            const month = String(start.getMonth() + 1).padStart(2, '0'); // Adding 1 to the month since it's zero-based
+            const day = String(start.getDate()).padStart(2, '0');
+            yyyymmdd = `${year}-${month}-${day}`;
+            // await team.forEach( async (id) => {
+            //     console.log("------------------------>",team, typeof(team), "yyyymmdd",yyyymmdd, "proj id:", projId );
+            //     res = await db.query(sql, [projId ,id,yyyymmdd] );
+            // })
 
+            for (const id of team) { 
+                // res = await db.query(sql, [projId, id, yyyymmdd] );
+                try {
+                    res = await db.query(sql, [projId, id, yyyymmdd]);
+                    console.log('Query successful:', res);
+                } catch (error) {
+                    console.error('Error executing query:', error);
+
+                }
+            }
+        }
+        start.setDate(start.getDate() + reportFrequency)
+    }
 } 
 
 /**
@@ -155,10 +174,14 @@ async function addComment(commentRead) {
  */
 async function assignTeamMemberToProj(projectId, projectTeamId) {
     sql = "CALL p_assign_tm_to_proj(?,?)";
-    await projectTeamId.forEach(async (member) => {
+    // await projectTeamId.forEach(async (member) => {
+    //     const db = await mysql.createConnection(config);
+    //     await db.query(sql,[projectId, member]);
+    // })
+    for (const member of projectTeamId) { 
         const db = await mysql.createConnection(config);
-        await db.query(sql,[projectId, member]);
-    })
+        await db.query(sql, [projectId, member]);
+    }
 } 
 
 async function comparePassWord(pw, hashedPw) {
@@ -202,9 +225,9 @@ function sendMail() {
         const mailOptions = { 
             from: 'pulseproject23bth@gmail.com',  // sender address
             to: 'emkl21@student.bth.se',   // list of receivers
-            subject: 'Sending Email using Node.js process.env',
+            subject: 'Test Mail',
             text: 'That was easy!',
-            html: '<b>Hey there! "This is our first message sent with Nodemailer<br/>"</b>'
+            html: '<b>This mail should contain a link for updating your password<br/>"</b>'
                     
             };
             transporter.sendMail(mailOptions, function (err, info) {
