@@ -26,3 +26,5 @@ python3 -m http.server 9000
 #   auth.role = "PM"; i auth behover tas bort
 #  // if (auth.role === "PM") { i olika views behöver kollas över
 # rader markerade med //################### ska tas bort i create-project
+# auth.userId = 1001 i reports-view behöver tas bort
+# auth.role = "TM" behöver ändras i auth

@@ -34,6 +34,11 @@ customElements.define('create-project', CreateProject);
 
 import ShowTMReports from "./components/tm-components/show-tm-reports.js";
 customElements.define('show-tm-reports', ShowTMReports);
+import WriteReport from "./components/tm-components/write-tm-reports.js";
+customElements.define('write-tm-report', WriteReport);
+
+import ResetPw from "./components/reset-pw.js";
+customElements.define('reset-pw', ResetPw);
 
 import ShowReports from "./components/show-reports.js";
 import ReportsView from "./views/reports-view.js";

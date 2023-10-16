@@ -29,12 +29,12 @@ export default class ShowProjects extends HTMLElement {
 
         });
         
-        const userInfo = document.createElement("div");
-        userInfo.innerHTML = "<user-info></user-info>";
+        // const userInfo = document.createElement("div");
+        // userInfo.innerHTML = "<user-info></user-info>";
         const projectAdd = document.createElement("div");
         projectAdd.innerHTML = "<project-add></project-add>"
 
-        this.appendChild(userInfo);
+        // this.appendChild(userInfo);
         this.appendChild(ul);
         this.appendChild(projectAdd);
     }

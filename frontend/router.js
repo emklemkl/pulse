@@ -3,7 +3,7 @@ export default class Router extends HTMLElement {
         super();
         
         this.currentRoute = "";
-
+        this.query = "";
         this.allRoutes = {
             "": {
                 view: "<div class='container'><login-view></login-view></div>",
@@ -23,6 +23,11 @@ export default class Router extends HTMLElement {
                 name: "Read report",
                 hidden: true
             },
+            "write_report": {
+                view: "<div class='container'><write-tm-report></write-tm-report></div>",
+                name: "Write report",
+                hidden: true
+            },
             "projects": {
                 view: "<div class='container'><projects-view></projects-view></div>",
                 name: "Projects",
@@ -30,6 +35,11 @@ export default class Router extends HTMLElement {
             "create-project": {
                 view: "<div class='container'><create-project-view></create-project-view></div>",
                 name: "Create project",
+                hidden: true,
+            },
+            "reset-pw": {
+                view: "<div class='container'><reset-pw></reset-pw></div>",
+                name: "ResetPw",
                 hidden: true,
             },
             "team": {
@@ -58,8 +68,13 @@ export default class Router extends HTMLElement {
     }
 
     resolveRoute() {
-        this.currentRoute = location.hash.replace("#", "")
+        const hashParts = location.hash.split('?');
+        this.query = hashParts[1]
+        this.currentRoute = hashParts[0].replace("#", "")
         this.render();
+
+        // this.currentRoute = location.hash.replace("#", "")
+        // this.render();
     }
 
     render() {

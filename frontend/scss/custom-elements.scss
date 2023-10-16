@@ -42,15 +42,29 @@ user-info {
 // Flyttade ur denna från user-info då den påverkar sidorutorna i appen
 .side-bars {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     background-color: transparentize($lighter-orange,0.8);
     border: 2px solid transparentize($lighter-orange,0.6) ;
     color: transparentize($font-color-black, 0.2);
-    max-width: 18rem;
-    max-height: 30rem;
-    padding: 1.6rem;
+    max-width: 26rem;
+    max-height: 10rem;
+    gap: 1.6rem;
+    padding: 0 0.7rem;
     border-radius: $border-rad-data;
+
+    .logged-user {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    p {
+        line-height: 0.4rem;
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
 
     form {
         display: flex;
@@ -73,4 +87,23 @@ input::file-selector-button {
 }
 input[type="file"] {
     font-size: 0;
+}
+
+navigation-outlet {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    left: -5%;
+}
+
+show-tm-reports {
+    div {
+        display: flex;
+        gap: 1.5rem;
+    
+        ul:nth-of-type(even) {
+            opacity: 0.85;
+        }
+    }
 }

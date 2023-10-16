@@ -33,7 +33,7 @@ export default class LoggedIn extends HTMLElement {
 
         });
 
-        this.innerHTML = "<user-info></user-info>"
+        // this.innerHTML = "<user-info></user-info>"
         divUl.appendChild(ul)
         this.appendChild(divUl);
     }

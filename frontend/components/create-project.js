@@ -69,7 +69,7 @@ export default class CreateProject extends HTMLElement {
         startDate.setAttribute( "autocomplete", "off" );
         startDate.setAttribute("type", "text");
         startDate.setAttribute("name", "start-date");
-        startDate.defaultValue = "2000-10-12"   //###################
+        startDate.value = "2000-10-12"   //###################
         startDate.setAttribute("required", "required");
         startDate.addEventListener("click", (event) => {
             event.target.type = "date"
@@ -80,6 +80,7 @@ export default class CreateProject extends HTMLElement {
                 ...this.projectData,
                 startDate: event.target.value
             };
+            endDate.setAttribute("min", this.projectData.startDate)
         });
         divInForm.appendChild(startDate)
 
@@ -93,12 +94,16 @@ export default class CreateProject extends HTMLElement {
         endDate.addEventListener("click", (event) => {
             event.target.type = "date"
         })
+        console.log(this.projectData);
+        console.log("🚀 ~ file: create-project.js:97 ~ CreateProject ~ connectedCallback ~ this.projectData:", this.projectData)
         endDate.classList.add("input");
+        
         endDate.addEventListener("input", (event) => {
             this.projectData = {
                 ...this.projectData,
                 endDate: event.target.value
             };
+            console.log("🚀 ~ file: create-project.js:97 ~ CreateProject ~ connectedCallback ~ this.projectData:", this.projectData)
         });
         divInForm.appendChild(endDate)
         let submitButton = document.createElement("input");
@@ -180,7 +185,7 @@ export default class CreateProject extends HTMLElement {
 
         form.appendChild(secondDivInForm);
         const userInfo = document.createElement("div");
-        userInfo.innerHTML = "<user-info></user-info>";
+        // userInfo.innerHTML = "<user-info></user-info>";
         this.appendChild(userInfo);
         this.appendChild(form);
     }

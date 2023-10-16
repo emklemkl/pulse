@@ -8,7 +8,7 @@ ul {
     .closed-list {
         text-overflow: ellipsis;
         overflow: hidden;
-        width: 36rem;
+        max-width: 70rem;
         height: 3rem;
         margin-bottom: 1.4rem;
         white-space: nowrap;
@@ -18,7 +18,7 @@ ul {
     
     .open-list {
         width: auto;
-        max-width: 36rem;
+        max-width: 70rem;
         height: auto;
         max-height: 18rem;
         margin-bottom: 1.4rem;
@@ -29,6 +29,7 @@ ul {
     }
     li {
         height: 3rem;
+        max-width: 100%;
         list-style-type: none;
         padding: 0.7rem;
         overflow: hidden;
@@ -45,7 +46,7 @@ ul {
         border-bottom-left-radius: 0.4rem;
     }
     .read {
-        border-left: $create-blue solid 4px;
+        border-left: $done-green solid 4px;
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 0.4rem;
     }

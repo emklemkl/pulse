@@ -102,7 +102,7 @@ export default class ReadReport extends HTMLElement {
 
 
 
-        this.innerHTML = "<user-info></user-info>"
+        // this.innerHTML = "<user-info></user-info>"
         this.appendChild(form)
 
     }

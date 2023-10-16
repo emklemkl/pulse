@@ -6,6 +6,7 @@ export default class ReportsView extends HTMLElement {
         if (!auth.token) {
             location.hash = "";
         }
+        auth.userId = 1001
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
         // auth.role = "TM"

@@ -16,7 +16,9 @@ app.use(mw.logIncomingToConsole); // Log requests to console.
 app.post("/login", rf.loginPost) // overview
 
 app.get("/reports", mw.authToken, rf.getReports);
+app.get("/reports_tm/:id", mw.authToken, rf.getTmReports);
 app.get("/report/:id", mw.authToken, rf.getReport);
+app.post("/submit/report", mw.authToken, rf.submitReport); //          ############
 
 app.get("/team", mw.authToken, rf.getTeam);
 

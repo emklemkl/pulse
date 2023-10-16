@@ -5,8 +5,26 @@ import auth from "./auth.js";
 
 const proj = {
     selectReport: 0,
+    selectProject: 0,
     reports: async function reports() {
         const response = await fetch(`${baseURL}/reports`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${auth.token}`,
+                "content-type": "application/json"
+            },
+        });
+        const result = await response.json();
+
+        return result[0];
+    },
+
+    getTmReports: async function getTmReports() {
+        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
+        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
+        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
+        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
+        const response = await fetch(`${baseURL}/reports_tm/${auth.userId}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${auth.token}`,
@@ -66,6 +84,19 @@ const proj = {
             console.log("🚀 ~ file: proj.js:63 ~ addComment ~ commentAndRead:", commentAndRead)
             const response = await fetch(`${baseURL}/add_comment/report`, {
                 body: JSON.stringify(commentAndRead),
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                    "content-type": "application/json"
+                },
+            });
+            // await response.json();
+        },
+
+        writeReport: async function writeReport(text, reportId) {
+            text.id = reportId 
+            const response = await fetch(`${baseURL}/submit/report`, {
+                body: JSON.stringify(text),
                 method: "POST",
                 headers: {
                     'Authorization': `Bearer ${auth.token}`,

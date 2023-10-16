@@ -1,39 +1,17 @@
 import auth from "../models/auth.js";
 import {baseURL} from "../utils.js";
-export default class LoginForm extends HTMLElement {
+export default class ResetPw extends HTMLElement {
     constructor() {
         super();
 
         this.name = "Project Pulse2";
     }
 
-    // //component attributes
-    // static get observedAttributes() {
-    //     return ["name"]
-    // }
-
-    async test() {
-        const response = await fetch(`${baseURL}/`, {
-        });
-        const result = await response.json();
-        console.log(result);
-    }
-
-    async login() {
+    async resetPw() {
         const result = await auth.login(
             this.credentials.userId,
             this.credentials.password,
         );
-
-        if (auth.token) {
-            let loggedAs = document.getElementsByClassName("user-logged")
-            loggedAs[0].textContent = `User: ${auth.userId}`
-            loggedAs[1].textContent = `Role: ${auth.role}`
-            loggedAs[2].textContent = `Name: ${auth.name}`
-
-            location.hash = "overview";
-            console.log("Login Gick bra",auth.token);
-        } 
     }
 
     // connect component
@@ -50,22 +28,6 @@ export default class LoginForm extends HTMLElement {
             this.login();
         });
 
-        // Create userId input element
-        let userId = document.createElement("input");
-
-        userId.setAttribute("type", "number")
-        userId.setAttribute("min", "1000")
-        userId.setAttribute("name", "user")
-        userId.setAttribute("required", "required")
-        userId.classList.add("input");
-        userId.setAttribute("placeholder", "Employee Id: 10XX")
-        userId.addEventListener("input", (event) => {
-            this.credentials = {
-                ...this.credentials,
-                userId: event.target.value,
-            };
-            console.log(event.target.value);
-        });
         
         // Create PW-input element
         let password = document.createElement("input");
@@ -80,6 +42,22 @@ export default class LoginForm extends HTMLElement {
             this.credentials = {
                 ...this.credentials,
                 password: event.target.value
+            };
+            console.log(event.target.value);
+        });
+
+        let password2 = document.createElement("input");
+        
+        password2.setAttribute("placeholder", "Confirm password")
+        password2.setAttribute("type", "password");
+        password2.setAttribute("name", "pw");
+        password2.setAttribute("required", "required");
+        password2.classList.add("input");
+
+        password2.addEventListener("input", (event) => {
+            this.credentials = {
+                ...this.credentials,
+                password2: event.target.value
             };
             console.log(event.target.value);
         });

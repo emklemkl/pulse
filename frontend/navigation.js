@@ -18,6 +18,6 @@ export default class Navigation extends HTMLElement {
                 navButtonId++;
             }
         }
-        this.innerHTML = `<nav id="top-nav">${navigationLinks}</nav>`;
+        this.innerHTML = `<user-info></user-info><nav id="top-nav">${navigationLinks}</nav>`;
     }
 }

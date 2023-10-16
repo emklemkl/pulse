@@ -32,12 +32,12 @@ export default class ShowTeam extends HTMLElement {
             ul.appendChild(li);
         });
 
-        const userInfo = document.createElement("div");
-        userInfo.innerHTML = "<user-info></user-info>";
+        // const userInfo = document.createElement("div");
+        // userInfo.innerHTML = "<user-info></user-info>";
         const userAdd = document.createElement("div");
         userAdd.innerHTML = "<user-add></user-add>"
 
-        this.appendChild(userInfo);
+        // this.appendChild(userInfo);
         this.appendChild(ul);
         this.appendChild(userAdd);
     }

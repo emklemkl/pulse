@@ -23,13 +23,17 @@ async function loginPost(req, res) {
         });
         res.json(accessToken);
     } else {
-        res.status(401)
         res.json(loginStatus)
     }
 }
 
 async function getReports(req, res) {
     let res2 = await pulse.getAllReports()
+        res.json(res2);
+}
+
+async function getTmReports(req, res) {
+    let res2 = await pulse.getAllTmReports(req.params.id)
         res.json(res2);
 }
 
@@ -47,6 +51,12 @@ async function addTeamMembers(req, res) {
 async function addComment(req, res) {
     console.log(req.body);
     let res2 = await pulse.addComment(req.body)
+        res.json(res2);
+}
+
+async function submitReport(req, res) {
+    console.log(req.body);
+    let res2 = await pulse.submitReport(req.body)
         res.json(res2);
 }
 
@@ -87,5 +97,7 @@ module.exports = {
     createProject: createProject,
     // getProject: getProject,
     getReport: getReport,
-    addComment: addComment
+    addComment: addComment,
+    submitReport: submitReport,
+    getTmReports: getTmReports,
 } 

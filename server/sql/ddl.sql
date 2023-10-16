@@ -64,6 +64,7 @@ CREATE PROCEDURE p_add_new_team_members(
 BEGIN
     INSERT INTO user_data(`name`, `mail`, `address`, `phone`, `role`, `ssn`, `password`)
     VALUES (a_name, a_mail, a_address, a_phone, a_role, a_ssn, a_password);
+    SELECT `name`, id, `role` FROM user_data WHERE id = LAST_INSERT_ID();
 END
 ;;
 DELIMITER ;

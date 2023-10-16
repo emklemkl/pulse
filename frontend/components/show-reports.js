@@ -32,7 +32,7 @@ export default class ShowReports extends HTMLElement {
 
         });
 
-        this.innerHTML = "<user-info></user-info>"
+        // this.innerHTML = "<user-info></user-info>"
         divUl.appendChild(ul)
         this.appendChild(divUl);
     }
