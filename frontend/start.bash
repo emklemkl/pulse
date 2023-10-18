@@ -28,3 +28,7 @@ python3 -m http.server 9000
 # rader markerade med //################### ska tas bort i create-project
 # auth.userId = 1001 i reports-view behöver tas bort
 # auth.role = "TM" behöver ändras i auth
+#  'Authorization': `Bearer ${this.jwtForReset}`, ########### kommentera ut dettta u auth rad 29
+# uncomment         // auth.userId = 1001 reports-view rad 9.
+
+#       auth.role = "TM" auth.userId = 1001 i project view behöver tas bort

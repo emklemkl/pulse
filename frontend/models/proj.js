@@ -59,7 +59,21 @@ const proj = {
             });
             const result = await response.json();
             
-            console.log("hej");
+            return result[0];
+        },
+    
+
+        myProjects: async function myProjects() {
+            console.log(auth.userId);
+            const response = await fetch(`${baseURL}/my_projects/${auth.userId}`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                    "content-type": "application/json"
+                },
+            });
+            const result = await response.json();
+            console.log(result);
             return result[0];
         },
     

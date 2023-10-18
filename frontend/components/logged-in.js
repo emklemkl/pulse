@@ -30,7 +30,6 @@ export default class LoggedIn extends HTMLElement {
                 event.target.classList.toggle("open-list");
             });
             ul.appendChild(li);
-
         });
 
         // this.innerHTML = "<user-info></user-info>"

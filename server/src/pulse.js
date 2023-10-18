@@ -31,11 +31,16 @@ async function getAllEmployees() {
  * @function getAllReports
  * @returns Gets all sent reports from db
  */
-async function getAllReports() {
+async function getAllReports(raw=false) {
     sql = "CALL p_get_all_reports()";
     const db = await mysql.createConnection(config);
     res = await db.query(sql);
-    console.log(res[0]);
+
+    if (raw) {
+        sql = "SELECT * FROM REPORTS;";
+        const db = await mysql.createConnection(config);
+        res = await db.query(sql);
+    }
     return res;
 }
 
@@ -62,6 +67,17 @@ async function getAllTmReports(user_id) {
 }
 
 /**
+ * @function getTmProjects
+ * @returns Gets a specifik report from db
+ */
+async function getTmProjects(user_id) {
+    sql = "CALL p_get_all_tm_projects(?)";
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql, [user_id]);
+    return res;
+}
+
+/**
  * @function getAllProjects
  * @returns Projects found in db
  */
@@ -79,7 +95,6 @@ async function getAllProjects() {
  */
 async function getTeamMembers() {
     sql = "CALL p_get_all_team_members()";
-    console.log(123123123213);
     const db = await mysql.createConnection(config);
     res = await db.query(sql);
     return res;
@@ -105,7 +120,7 @@ async function addTeamMembers(user_info) {
         });
         sendMail(user[1], 'Choose password','Welcome',`<b>Welcome ${user[0]},<br/>please follow this 
         <form> <a href="http://localhost:9000">link</a> to choose a password <br>
-        If the link is'nt working please copy "http://localhost:9000/#reset_pw?${accessToken}" into to your address bar.</b>`);
+        If the link is'nt working please copy "http://localhost:9000/#reset-pw?${accessToken}" into to your address bar.</b>`);
     };    
 }
 // users.forEach(async user =>  {
@@ -207,6 +222,17 @@ async function addComment(commentRead) {
 } 
 
 /**
+ * @function setANewPw
+ */
+async function setANewPw(user) {
+    console.log("setNewPw");
+    sql = "CALL p_set_new_pw(?,?)";
+    const hashedPw = await encrypt(user.password)
+    const db = await mysql.createConnection(config);
+    await db.query(sql, [user.id, hashedPw]);
+} 
+
+/**
  * @function assignTeamMemberToProj
  */
 async function assignTeamMemberToProj(projectId, projectTeamId) {
@@ -247,6 +273,20 @@ function encrypt(pw) {
     });
 }
 
+/**
+ * 
+ * @param {int} id
+ * @description Sets the 'reminded' column in db 'reports' to NOW()
+*/
+async function setReminded(id) {
+    sql = "CALL p_mark_as_reminded(?)";
+    const db = await mysql.createConnection(config);
+    console.log("Before query");
+    await db.query(sql, [id]);  
+    console.log("After query");
+
+}
+
 function sendMail(mail, aSubject, aText, aHtml) {
     const transporter = nodemailer.createTransport({
         port: 465,               // true for 465, false for other ports
@@ -284,5 +324,9 @@ module.exports = {
     generateReports: generateReports,
     getAllTmReports: getAllTmReports,
     submitReport: submitReport,
+    setANewPw: setANewPw,
+    getTmProjects: getTmProjects,
+    sendMail: sendMail,
+    setReminded: setReminded
 } 
     

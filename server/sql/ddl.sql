@@ -43,7 +43,7 @@ DELIMITER ;
 CREATE TABLE `projects` (
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name` VARCHAR(100),
-    `description` VARCHAR(500),
+    `description` TEXT,
     `project_start` DATE,
     `project_end` DATE,
     `report_frequency` INT
@@ -86,10 +86,10 @@ CREATE TABLE `reports` (
     `read` BOOL,
     `due_date` DATE,
     `sent` DATETIME,
+    `reminded` DATETIME,
     FOREIGN KEY (`proj_id_report`) REFERENCES `projects`(`id`)
 );
 ALTER TABLE `reports` AUTO_INCREMENT = 100; # Changes the start value for AUTO_INC
-
 
 
 DROP PROCEDURE IF EXISTS p_get_all_reports;
@@ -120,7 +120,7 @@ CREATE PROCEDURE p_add_new_project(
 	a_start_date DATE,
     a_end_date DATE,
     a_report_freq INT,
-    a_description VARCHAR(5000)
+    a_description TEXT
     )
 BEGIN
     INSERT INTO 
@@ -203,38 +203,29 @@ END
 ;;
 DELIMITER ;
 
-INSERT INTO projects(`name`, `description`) VALUES ("Project Test", "Testa testet med en text om test");
-INSERT INTO projects(`name`, `description`) VALUES ("Project Test2", PASSWORD("Test"));
-#INSERT INTO user_to_proj VALUES (1001, 10);
-#INSERT INTO user_to_proj VALUES (1002, 10);
-INSERT INTO user_data(`name`,mail,address,phone,`role`, ssn,`password`) VALUES ("Emil Karlsson","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111",'$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa');
-INSERT INTO user_data(`name`,mail,address,phone,`role`,ssn,`password`) VALUES ("Jane Doe","emil_ffs1994@hotmail.com","Ronneby väg 1 14345","0709111112","TM","9999991212","$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae");
+INSERT INTO projects(`name`, `description`, project_start, project_end, report_frequency) VALUES ("Project Test", "Testa testet med en text om test", '2023-10-18','2023-10-26',7);
+
+
+INSERT INTO user_data(`name`,mail,address,phone,`role`, ssn,`password`) VALUES ("Admin Karlsson","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111",'$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa');
+INSERT INTO user_data(`name`,mail,address,phone,`role`,ssn,`password`) VALUES ("Emil Karlsson","emkl21@student.bth.se","Ronneby väg 1 14345","0709111112","TM","9999991212","$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae");
 INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
 VALUES ("John Smith", "john.smith@example.com", "123 Main St, Anytown, USA", "555-123-4567", "TM", "123456789");
-INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
-VALUES ("Mary Johnson", "mary.johnson@gmail.com", "456 Elm St, Another Town, USA", "555-987-6543", "TM", "987654321");
-INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
-VALUES ("Robert Davis", "robert.davis@yahoo.com", "789 Oak St, Yet Another Town, USA", "555-555-5555", "TM", "555555555");
-INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
-VALUES ("Sarah Brown", "sarah.brown@hotmail.com", "101 Pine St, Last Town, USA", "555-111-2222", "TM", "111223333");
-INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) VALUES (10, 1003, "
- fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. 
- Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
- Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
- INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) VALUES (10, 1001, "
-Morbi eu egestas erat. 
- Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
- Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
-select * from user_data;
-explain select * from user_to_proj WHERE proj_id = 13;
-select * from user_to_proj;
+# INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
+# VALUES ("Mary Johnson", "mary.johnson@gmail.com", "456 Elm St, Another Town, USA", "555-987-6543", "TM", "987654321");
+# INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
+# VALUES ("Robert Davis", "robert.davis@yahoo.com", "789 Oak St, Yet Another Town, USA", "555-555-5555", "TM", "555555555");
+# INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
+# VALUES ("Sarah Brown", "sarah.brown@hotmail.com", "101 Pine St, Last Town, USA", "555-111-2222", "TM", "111223333");
+# INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) VALUES (10, 1003, "
+#  fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. 
+#  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
+#  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
+#  INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `submitted_report`) VALUES (10, 1001, "
+# Morbi eu egestas erat. 
+#  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
+#  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.");
+update projects set `description`= "fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. 
+#  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
+#  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare." where projects.id = 11;
 select * from projects;
-select * from reports;
-select password("test");
-
-select p.id, p.name, p.description, p.project_start, p.report_frequency from projects p
-JOIN user_to_proj utp ON p.id = utp.proj_id
-JOIN user_data ud ON ud.id = utp.user_id
-WHERE p.name = 1002
-GROUP BY p.id;
-select "ALL GOOD";
+select * from user_to_proj;

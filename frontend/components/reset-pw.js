@@ -1,5 +1,4 @@
 import auth from "../models/auth.js";
-import {baseURL} from "../utils.js";
 export default class ResetPw extends HTMLElement {
     constructor() {
         super();
@@ -8,24 +7,35 @@ export default class ResetPw extends HTMLElement {
     }
 
     async resetPw() {
-        const result = await auth.login(
-            this.credentials.userId,
+        
+        const result = await auth.resetPw(
             this.credentials.password,
         );
     }
 
+    check = function() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Matching';
+            } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Not matching';
+            }
+        }
+
     // connect component
     connectedCallback() {
-
-        auth.token = ""; // Logs out user
-        auth.userId = ""; // Logs out user
+        const nav = document.getElementsByTagName("navigation-outlet")[0];
+        nav.classList.add("hidden");
 
         let form = document.createElement("form");
         form.classList.add("login");
-        
         form.addEventListener("submit", (event) => {
             event.preventDefault();
-            this.login();
+            if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+                this.resetPw();
+            }
         });
 
         
@@ -34,6 +44,7 @@ export default class ResetPw extends HTMLElement {
         
         password.setAttribute("placeholder", "Password")
         password.setAttribute("type", "password");
+        password.id = "password"
         password.setAttribute("name", "pw");
         password.setAttribute("required", "required");
         password.classList.add("input");
@@ -43,13 +54,14 @@ export default class ResetPw extends HTMLElement {
                 ...this.credentials,
                 password: event.target.value
             };
-            console.log(event.target.value);
+            this.check()
         });
 
         let password2 = document.createElement("input");
         
         password2.setAttribute("placeholder", "Confirm password")
         password2.setAttribute("type", "password");
+        password2.id = "confirm_password"
         password2.setAttribute("name", "pw");
         password2.setAttribute("required", "required");
         password2.classList.add("input");
@@ -59,19 +71,22 @@ export default class ResetPw extends HTMLElement {
                 ...this.credentials,
                 password2: event.target.value
             };
-            console.log(event.target.value);
+            this.check()
         });
 
+        let span = document.createElement("span")
+        span.id = "message"
         let submitButton = document.createElement("input");
 
         submitButton.setAttribute("type", "submit");
-        submitButton.setAttribute("value", "Log in");
+        submitButton.setAttribute("value", "Done");
         submitButton.classList.add("button", "green");
 
         // this.innerHTML = `<h1>${this.name}</h1>`;
 
-        form.appendChild(userId);
         form.appendChild(password);
+        form.appendChild(password2);
+        form.appendChild(span)
         form.appendChild(submitButton);
         this.appendChild(form);
     }

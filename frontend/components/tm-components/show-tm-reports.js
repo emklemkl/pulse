@@ -30,9 +30,10 @@ export default class ShowTMReports extends HTMLElement {
             }
             projectsOrganize.push(i.proj_id_report)
         }
-        reports.forEach(report => {
-
-            if (report.sent === null && parseInt(report.submitted_by_user) === auth.userId) {
+        console.log(reports);
+        for (const report of reports) 
+         {
+            if (report.sent === null && parseInt(report.submitted_by_user) === userId) {
             const dueDate = new Date(report.due_date);
             const year = dueDate.getFullYear();
             const month = String(dueDate.getMonth() + 1).padStart(2, '0'); // Adding 1 to the month since it's zero-based
@@ -40,7 +41,8 @@ export default class ShowTMReports extends HTMLElement {
             const yyyymmdd = `${year}-${month}-${day}`;
             let li = document.createElement("li")
 
-            li.classList.add("closed-list", "unread")
+            // li.classList.add("closed-list", "unread")
+            li.classList.add("closed-list-tm", "not-sent")
             li.textContent = `Project: ${report.proj_id_report} | Due date: ${yyyymmdd} 29:59`
             li.addEventListener("click", (_) => {
                 proj.selectReport = report.id; // Saves the report id for submission on write-tm-reports.
@@ -55,7 +57,8 @@ export default class ShowTMReports extends HTMLElement {
                 const day = String(dueDate.getDate()).padStart(2, '0');
                 const yyyymmdd = `${year}-${month}-${day}`;
                 let li = document.createElement("li")
-                li.classList.add("closed-list", "read")
+                li.classList.add("sent")
+                li.classList.add("closed-list-tm")
                 li.textContent = `Project: ${report.proj_id_report} | Due date: ${yyyymmdd} 29:59`
                 li.addEventListener("click", (_) => {
                     proj.selectReport = report.id; // Saves the report id for submission on write-tm-reports.
@@ -64,7 +67,7 @@ export default class ShowTMReports extends HTMLElement {
                 });
                 ul2.appendChild(li);
             }
-        });
+        };
 
         // this.innerHTML = "<user-info></user-info>"
         divUl.appendChild(ul)

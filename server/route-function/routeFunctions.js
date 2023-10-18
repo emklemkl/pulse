@@ -43,6 +43,11 @@ async function getReport(req, res) {
     res.json(res2);
 }
 
+async function getTmProjects(req, res) {
+    let res2 = await pulse.getTmProjects(req.params.id)
+    res.json(res2);
+}
+
 async function addTeamMembers(req, res) {
     let res2 = await pulse.addTeamMembers(req.body)
         res.json(res2);
@@ -76,7 +81,11 @@ async function createProject(req, res) {
 async function getTeam(req, res) {
     let res2 = await pulse.getTeamMembers()
     res.json(res2);
+}
 
+async function setNewPw(req, res) {
+    let res2 = await pulse.setANewPw(req.body)
+    // res.json(res2);
 }
 
 async function indexRoute(req, res) {
@@ -100,4 +109,6 @@ module.exports = {
     addComment: addComment,
     submitReport: submitReport,
     getTmReports: getTmReports,
+    setNewPw: setNewPw,
+    getTmProjects: getTmProjects,
 } 

@@ -1,3 +1,5 @@
+import auth from "./models/auth.js";
+
 export default class Router extends HTMLElement {
     constructor() {
         super();
@@ -13,10 +15,12 @@ export default class Router extends HTMLElement {
             "overview": {
                 view: "<div class='container'><logged-view></logged-view></div>", // Behövs containerdiven?
                 name: "Overview",
+                access: "PM"
             },
             "reports": {
                 view: "<div class='container'><reports-view></reports-view></div>",
                 name: "Reports",
+                access: "PMTM"
             },
             "read_report": {
                 view: "<div class='container'><read-report-view></read-report-view></div>",
@@ -31,6 +35,7 @@ export default class Router extends HTMLElement {
             "projects": {
                 view: "<div class='container'><projects-view></projects-view></div>",
                 name: "Projects",
+                access: "PMTM"
             },
             "create-project": {
                 view: "<div class='container'><create-project-view></create-project-view></div>",
@@ -45,6 +50,7 @@ export default class Router extends HTMLElement {
             "team": {
                 view: "<team-view class='container'></team-view>",
                 name: "Team",
+                access: "PM"
             },
             "dummy": {
                 view: "<dummy-refresh></dummy-refresh>",
@@ -69,7 +75,7 @@ export default class Router extends HTMLElement {
 
     resolveRoute() {
         const hashParts = location.hash.split('?');
-        this.query = hashParts[1]
+        auth.jwtForReset = hashParts[1]
         this.currentRoute = hashParts[0].replace("#", "")
         this.render();
 

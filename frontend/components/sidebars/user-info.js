@@ -10,7 +10,7 @@ export default class UserInfo extends HTMLElement {
     // connect component
     async connectedCallback() {
         let div = document.createElement("div");
-        div.classList.add("side-bars"); // Gör en ruta som visar vem som är inloggad.
+        div.classList.add("side-bar-logout"); // Gör en ruta som visar vem som är inloggad.
         this.appendChild(div)
         div.innerHTML=`<div class="logged-user"><p class="user-logged">User: ${auth.userId}</p><p class="user-logged">Role: ${auth.role}</p><p class="user-logged">Name: ${auth.name}</p></div><button id="logout">Log out</button>`
         document.getElementById("logout").addEventListener("click", (e) => {

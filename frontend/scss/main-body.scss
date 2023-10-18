@@ -39,6 +39,49 @@ body {
     max-width: 70rem;
     padding: $border-rad-data + $button-padding;
     background-color: transparentize($orange, 0.85);
+    
+    p {
+        width: 92%;
+        position: relative;
+        background-color: rgba(255,188,20,.1);
+        padding: 0.7rem;
+        border: solid 1px #333;
+        border-radius: 1rem;
+        left: 4%;
+        max-height: 5rem;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .tm-proj-list {
+        margin-bottom: 1.6rem;
+        
+    }
+    
+    .open {
+        max-height: 18rem;
+        overflow-y: scroll;
+        padding: 1.4rem;
+        @include scrollbar();
+        animation: slideDownAnimation $animation-duration ease-out;
+    }
+    
+    .closed {
+        overflow-y: hidden;
+        max-height: 5rem;
+        animation: slideUpAnimation2 $animation-duration ease-in; 
+    }
+}
+
+
+@keyframes slideUpAnimation2 {
+    0% {
+        max-height: 18rem;
+    }
+    100% {
+        max-height: 5rem;
+    }
 }
 
 
