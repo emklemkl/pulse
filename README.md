@@ -22,7 +22,7 @@ decide to start the application <b>the database will always be populated with at
 application the "test" password is not changeable through the UI. <b>All pre added and newly added (with csv) have the default password "test"</b>
 All TM and PM will use their employment number in order to log in (is just a unique incremented value upon registration)<br><br>
 
-I also included a CSV file containing made up employees for easy testing. If you want to test the automated mail functions (choose new pw on register or reminder mails for reports) you need to change 
+I also included a CSV file in <b>project-pulse/server/sql/db/</b> containing made up employees for easy testing. If you want to test the automated mail functions (choose new pw on register or reminder mails for reports) you need to change 
 the mail of one of the employees in the CSV file to a valid email. Be wary that any csv files need to be in exactly the provided format in order to be usable. Also if you add the same employee twice (is 
 compared with existing SSN) the server will crash, in other words you cant add duplicate employees, but if you try the server need 2 restart.
 <br><br>
