@@ -1,6 +1,6 @@
 # pulse
 Project Pulse.<br>
-I have included a prepopulated database dump named pulse.sql including all stored procedures. Below is a get started guide. 
+I have included a prepopulated database dump named pulse.sql including all stored procedures. You will find it in <b>project-pulse/server/sql/db/pulse.sql </b>. Below is a get started guide. 
 The reason the user dbadm is needed is because some of the procedures are locked to that user. The guide below is successfully tested in a docker container. Unfortunately 
 I didnt have time to put the entire project in Docker images. 
 <br><br>
