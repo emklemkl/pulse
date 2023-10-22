@@ -1,13 +1,13 @@
 # pulse
 Project Pulse.<br>
-I have included a prepopulated database dump named pulse.sql including all stored procedures. Below is a get started guide. 
+I have included a prepopulated database dump named pulse.sql including all stored procedures. You will find it in <b>project-pulse/server/sql/db/pulse.sql </b>. Below is a get started guide. 
 The reason the user dbadm is needed is because some of the procedures are locked to that user. The guide below is successfully tested in a docker container. Unfortunately 
 I didnt have time to put the entire project in Docker images. 
 <br><br>
 Step 1: Create a user named "dbadm" (without quotes) in Mariadb Example: MariaDB [(none)]> CREATE USER dbadm IDENTIFIED BY 'P@ssw0rd'; <br><br>
 Step 2: Grant dbadm permissions Example: MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO dbadm IDENTIFIED BY 'password';<br><br>
 Step 3: FLUSH PRIVILEGES; This might be OPTIONAL as it was not needed in some of my trials.<br><br>
-Step 4: update the config file ./project-pulse/server/config/db/pulse.json. Get hostname in linux by typing hostname in terminal. Example hostname <LAPTOP-9H0JTS05.local><br>
+Step 4: update the config file ./project-pulse/server/config/db/pulse.json. Get hostname in linux by typing hostname in terminal. Example hostname <LAPTOP-XYZ.local><br>
 {<br>
     "host":     "your hostname", <br>
     "user":     "dbadm",<br>
