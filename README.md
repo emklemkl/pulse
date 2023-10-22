@@ -7,7 +7,7 @@ I didnt have time to put the entire project in Docker images.
 Step 1: Create a user named "dbadm" (without quotes) in Mariadb Example: MariaDB [(none)]> CREATE USER dbadm IDENTIFIED BY 'P@ssw0rd'; <br><br>
 Step 2: Grant dbadm permissions Example: MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO dbadm IDENTIFIED BY 'password';<br><br>
 Step 3: FLUSH PRIVILEGES; This might be OPTIONAL as it was not needed in some of my trials.<br><br>
-Step 4: update the config file ./project-pulse/server/config/db/pulse.json. Get hostname in linux by typing hostname in terminal. Example hostname <LAPTOP-9H0JTS05.local><br>
+Step 4: update the config file ./project-pulse/server/config/db/pulse.json. Get hostname in linux by typing hostname in terminal. Example hostname <LAPTOP-XYZ.local><br>
 {<br>
     "host":     "your hostname", <br>
     "user":     "dbadm",<br>
