@@ -22,7 +22,7 @@ decide to start the application <b>the database will always be populated with at
 application the "test" password is not changeable through the UI. All pre added and newly added (with csv) have the default password "test"<br><br>
 
 I also included a CSV file containing made up employees for easy testing. If you want to test the automated mail functions (choose new pw on register or reminder mails for reports) you need to change 
-the mail of one of the employees in the CSV file to a valid email. Be wary that the csv file need to be in extactly the provided format in order to be usable. Also if you add the same employee twice (is 
+the mail of one of the employees in the CSV file to a valid email. Be wary that the csv files need to be in exactly the provided format in order to be usable. Also if you add the same employee twice (is 
 compared with existing SSN) the server will crash, in other words you cant add duplicate employees, but if you try the server need 2 restart.
 <br><br>
 Step 5: In order to start the application you can simply run node server.js in ./project-pulse/server AND ./start.bash (or bash start.bash) in ./project-pulse/frontend. The app will then be available on localhost:9000
