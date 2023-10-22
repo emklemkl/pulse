@@ -1,5 +1,6 @@
 
 import proj from "../models/proj.js";
+import auth from "../models/auth.js";
 export default class LoggedIn extends HTMLElement {
     constructor() {
         super();
@@ -14,6 +15,11 @@ export default class LoggedIn extends HTMLElement {
 
     // connect component
     async connectedCallback() {
+        if (auth.role === "PM") {
+            document.getElementById("nav-button-0").classList.remove("hidden");
+            document.getElementById("nav-button-3").classList.remove("hidden");
+        }
+
         let ul = document.createElement("ul");
         ul.classList.add("main-content-background")
         let divUl = document.createElement("div");

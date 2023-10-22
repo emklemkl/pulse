@@ -30,7 +30,7 @@ CREATE TABLE `projects` (
   `project_end` date DEFAULT NULL,
   `report_frequency` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (10,'Project Test','Testa testet med en text om test','2023-10-18','2023-10-26',7),(11,'Test','fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. \n#  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. \n#  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare.','2023-10-18','2023-10-25',7),(12,'Another project','felis vel lorem tristique congue. Duis dui orci, sollicitudin vel ante id, rutrum pellentesque arcu. Maecenas ultrices, nisl in rutrum efficitur, velit enim rhoncus nisl, sit amet cursus leo risus et dolor. In fringilla erat neque, porttitor consequat metus tempor at. Nullam quis massa consequat, convallis ante vel, laoreet tellus. Suspendisse at maximus nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris condimentum, est sit amet sodales venenatis, odio odio sagittis felis, sed faucibus libero quam non nibh. Morbi sit amet ultrices mauris, vehicula interdum est. Aenean nibh enim, maximus vel rutrum eu, egestas ut augue. Etiam tempor, diam pellentesque bibendum elementum, massa eros pharetra erat, vel lobortis est justo ut leo. Ut hendrerit rhoncus enim sed blandit. Curabitur quam nisi, pulvinar sed facilisis in, malesuada in nulla. Nullam non elit id magna fermentum placerat sit amet quis nunc.\n\nNunc quam lectus, placerat vitae gravida at, pulvinar in erat. Quisque pellentesque, odio vulputate sagittis cursus, tortor orci dictum nunc, in pharetra sem diam in nulla. Quisque at venenatis mi. Vestibulum in mauris ac nunc ultricies consectetur ut ut augue.','2023-10-18','2023-10-25',1);
+INSERT INTO `projects` VALUES (10,'My first project','This is my first project. I can get updates from my team members. I can also comment on their submitted reports. ','2023-10-24','2023-10-31',1);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `reports` (
   PRIMARY KEY (`id`),
   KEY `proj_id_report` (`proj_id_report`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`proj_id_report`) REFERENCES `projects` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (100,11,1001,'This is a report',NULL,NULL,'2023-10-18','2023-10-18 16:44:37','2023-10-18 14:55:08'),(101,11,1002,NULL,NULL,NULL,'2023-10-18',NULL,'2023-10-18 14:55:08'),(102,11,1001,'drt jftdr thjmg,ctj ',NULL,NULL,'2023-10-25','2023-10-19 10:43:57',NULL),(103,11,1002,NULL,NULL,NULL,'2023-10-25',NULL,NULL),(104,12,1002,NULL,NULL,NULL,'2023-10-18',NULL,'2023-10-18 16:05:32'),(105,12,1001,'Test report',NULL,NULL,'2023-10-18','2023-10-19 10:26:20','2023-10-18 16:05:32'),(106,12,1002,NULL,NULL,NULL,'2023-10-19',NULL,'2023-10-18 16:05:32'),(107,12,1001,NULL,NULL,NULL,'2023-10-19',NULL,'2023-10-18 16:05:32'),(108,12,1002,NULL,NULL,NULL,'2023-10-20',NULL,'2023-10-19 10:25:33'),(109,12,1001,NULL,NULL,NULL,'2023-10-20',NULL,'2023-10-19 10:25:33'),(110,12,1002,NULL,NULL,NULL,'2023-10-23',NULL,NULL),(111,12,1001,NULL,NULL,NULL,'2023-10-23',NULL,NULL),(112,12,1002,NULL,NULL,NULL,'2023-10-24',NULL,NULL),(113,12,1001,NULL,NULL,NULL,'2023-10-24',NULL,NULL),(114,12,1002,NULL,NULL,NULL,'2023-10-25',NULL,NULL),(115,12,1001,NULL,NULL,NULL,'2023-10-25',NULL,NULL);
+INSERT INTO `reports` VALUES (100,10,1002,'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultricies tristique nulla aliquet enim tortor. Enim ut tellus elementum sagittis vitae et leo duis. Eget est lorem ipsum dolor sit. Morbi quis commodo odio aenean sed adipiscing diam. Orci ac auctor augue mauris augue neque gravida in fermentum. Pulvinar sapien et ligula ullamcorper malesuada proin libero. Consequat semper viverra nam libero justo. Pellentesque id nibh tortor id. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque.',NULL,NULL,'2023-10-24','2023-10-22 20:05:10',NULL),(101,10,1001,'This is my report. I did my this and that...',NULL,NULL,'2023-10-24','2023-10-22 19:59:44',NULL),(102,10,1002,NULL,NULL,NULL,'2023-10-25',NULL,NULL),(103,10,1001,NULL,NULL,NULL,'2023-10-25',NULL,NULL),(104,10,1002,NULL,NULL,NULL,'2023-10-26',NULL,NULL),(105,10,1001,NULL,NULL,NULL,'2023-10-26',NULL,NULL),(106,10,1002,NULL,NULL,NULL,'2023-10-27',NULL,NULL),(107,10,1001,NULL,NULL,NULL,'2023-10-27',NULL,NULL),(108,10,1002,NULL,NULL,NULL,'2023-10-30',NULL,NULL),(109,10,1001,NULL,NULL,NULL,'2023-10-30',NULL,NULL),(110,10,1002,NULL,NULL,NULL,'2023-10-31',NULL,NULL),(111,10,1001,NULL,NULL,NULL,'2023-10-31',NULL,NULL);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `user_data` (
 
 LOCK TABLES `user_data` WRITE;
 /*!40000 ALTER TABLE `user_data` DISABLE KEYS */;
-INSERT INTO `user_data` VALUES (1000,'Admin Karlsson','emil_ffs1994@hotmail.com','Ronneby Road 1 12345','0709111111','$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa','PM','9999991111'),(1001,'Emil Karlsson','emkl21@student.bth.se','Ronneby väg 1 14345','0709111112','$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae','TM','9999991212'),(1002,'John Smith','john.smith@example.com','123 Main St, Anytown, USA','555-123-4567','test','TM','123456789');
+INSERT INTO `user_data` VALUES (1000,'Admin PM','emil_ffs1994@hotmail.com','Ronneby Road 1 12345','0709111111','$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa','PM','9999991111'),(1001,'Emil Karlsson','emkl21@student.bth.se','Ronneby väg 1 14345','0709111112','$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae','TM','9999991212'),(1002,'John Smith','john.smith@example.com','123 Main St, Anytown, USA','555-123-4567','$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae','TM','123456789');
 /*!40000 ALTER TABLE `user_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `user_to_proj` (
 
 LOCK TABLES `user_to_proj` WRITE;
 /*!40000 ALTER TABLE `user_to_proj` DISABLE KEYS */;
-INSERT INTO `user_to_proj` VALUES (1001,11),(1002,11),(1002,12),(1001,12);
+INSERT INTO `user_to_proj` VALUES (1002,10),(1001,10);
 /*!40000 ALTER TABLE `user_to_proj` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +323,9 @@ BEGIN
     SELECT
         p.id,
         p.name,
-        p.description
+        p.description,
+        p.project_start,
+        p.project_end
     FROM
         projects p;
 END ;;
@@ -350,7 +352,8 @@ BEGIN
         p.description,
         r.id AS "reportid",
         r.submitted_report,
-        r.`read`
+        r.`read`,
+        r.`sent`
     FROM
         projects p
     JOIN
@@ -458,6 +461,40 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `p_get_project_details` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+DELIMITER ;;
+CREATE DEFINER=`dbadm`@`localhost` PROCEDURE `p_get_project_details`(a_id INT)
+BEGIN
+    SELECT
+        p.id as "pid",
+        p.`name` as "pname",
+        p.`description`,
+        p.project_start,
+        p.project_end,
+        p.report_frequency,
+        ud.name,
+        ud.id,
+        ud.mail,
+        ud.phone
+    FROM
+        projects p
+        JOIN user_to_proj utp ON utp.proj_id = a_id
+        JOIN user_data ud on ud.id = utp.user_id
+        WHERE p.id = a_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `p_mark_as_reminded` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -534,4 +571,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-19 13:41:27
+-- Dump completed on 2023-10-22 20:14:37

@@ -33,6 +33,7 @@ export default class LoginForm extends HTMLElement {
 
             location.hash = "overview";
             console.log("Login Gick bra",auth.token);
+            console.log("Login Gick bra",auth.role);
         } 
     }
 

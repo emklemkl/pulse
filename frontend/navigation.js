@@ -29,13 +29,9 @@ export default class Navigation extends HTMLElement {
             }
         }
         this.innerHTML = `<user-info></user-info><nav id="top-nav">${navigationLinks}</nav>`;
-        // unauthorizedRoutes.forEach((e) => {
-        //     let i = 0;
-        //     console.log("🚀 ~ file: navigation.js:34 ~ Navigation ~ unauthorizedRoutes.forEach ~ document.getElementById(e):", document.getElementById(e))
         for (let i = 0; i < 4; i++) {
             document.getElementById(`nav-button-${i}`)
             console.log("🚀 ~ file: navigation.js:37 ~ Navigation ~ unauthorizedRoutes.forEach ~ document.getElementById(String(i)):", document.getElementById(`nav-button-${i}`))
         }
-        // })
     }
 }

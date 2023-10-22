@@ -262,6 +262,81 @@ VALUES ("John Smith", "john.smith@example.com", "123 Main St, Anytown, USA", "55
 update projects set `description`= "fringilla laoreet augue eu, tincidunt tempor lectus. Nam in purus mi. Morbi eu egestas erat. 
 #  Mauris faucibus risus vitae tortor imperdiet, id hendrerit libero hendrerit. Maecenas euismod id eros id scelerisque. 
 #  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare." where projects.id = 11;
+
+
+DROP PROCEDURE IF EXISTS p_create_reports;
+DELIMITER ;;
+CREATE PROCEDURE p_create_reports(
+	a_proj_id INT,
+    a_user_id INT,
+    a_date DATE)
+BEGIN
+	INSERT INTO reports(`proj_id_report`, `submitted_by_user`, `due_date`)
+    VALUES (a_proj_id, a_user_id, a_date);
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS p_set_new_pw;
+DELIMITER ;;
+CREATE PROCEDURE p_set_new_pw(
+	a_id INT,
+	a_pw VARCHAR(700))
+BEGIN
+	UPDATE `user_data`
+		SET `password` =  a_pw
+			WHERE user_data.id = a_id;	
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS p_mark_as_reminded;
+DELIMITER ;;
+CREATE PROCEDURE p_mark_as_reminded(
+	a_report_id INT)
+BEGIN
+	UPDATE `reports`
+		SET `reminded` =  NOW()
+			WHERE reports.id = a_report_id;	
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS p_submit_report;
+DELIMITER ;;
+CREATE PROCEDURE p_submit_report(
+	a_report TEXT,
+    a_proj_id INT)
+BEGIN
+	UPDATE reports
+    SET `submitted_report` = a_report, `sent` = NOW() 
+    WHERE reports.id = a_proj_id AND reports.sent IS NULL;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS p_get_all_tm_projects;
+DELIMITER ;;
+CREATE PROCEDURE p_get_all_tm_projects(
+    a_user_id INT)
+BEGIN
+	SELECT * FROM projects p
+		JOIN user_to_proj utp ON utp.proj_id = p.id
+		WHERE utp.user_id = a_user_id;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS p_get_all_tm_reports;
+DELIMITER ;;
+CREATE PROCEDURE p_get_all_tm_reports(
+    a_user_id INT)
+BEGIN
+	SELECT * FROM reports WHERE reports.submitted_by_user = a_user_id;
+END
+;;
+DELIMITER ;
+UPDATE user_data SET `password`='$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae' WHERE user_data.id = 1002;
 select * from projects;
 select * from user_to_proj;
 select * from reports;
