@@ -1,6 +1,5 @@
-import auth from "../models/auth.js";
+
 import proj from "../models/proj.js";
-import {baseURL} from "../utils.js";
 export default class LoggedIn extends HTMLElement {
     constructor() {
         super();
@@ -10,7 +9,6 @@ export default class LoggedIn extends HTMLElement {
 
     async reports() {
         const result = await proj.reports();
-        console.log("🚀 ~ file: login-form.js:28 ~ LoginForm ~ login ~ result:", result)
         return result;
     }
 
@@ -19,17 +17,21 @@ export default class LoggedIn extends HTMLElement {
         let ul = document.createElement("ul");
         ul.classList.add("main-content-background")
         let divUl = document.createElement("div");
-        divUl.innerHTML = "<h3>Recently submitted reports</h3>"
+        divUl.innerHTML = "<h3>Report overview (click report for quick read)</h3>"
         let reports = await this.reports();
+        console.log(reports);
         reports.forEach(report => {
-            let li = document.createElement("li")
-            report.read ? li.classList.add("closed-list", "read") : li.classList.add("closed-list", "unread")
-            li.textContent = `R:${report.reportid} | Project ${report.name} (id:${report.id}) \nReport ${report.submitted_report}`
-            li.addEventListener("click", (event) => {
-                event.target.classList.toggle("closed-list");
-                event.target.classList.toggle("open-list");
-            });
-            ul.appendChild(li);
+            if ( report.sent) {
+
+                let li = document.createElement("li")
+                report.read ? li.classList.add("closed-list-tm", "read") : li.classList.add("closed-list-tm", "not-sent")
+                li.textContent = `R:${report.reportid} | Project ${report.name} (id:${report.id}) \nReport ${report.submitted_report}`
+                li.addEventListener("click", (event) => {
+                    event.target.classList.toggle("closed-list");
+                    event.target.classList.toggle("open-list");
+                });
+                ul.appendChild(li);
+            }
         });
 
         // this.innerHTML = "<user-info></user-info>"

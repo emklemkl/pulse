@@ -90,6 +90,17 @@ async function getAllProjects() {
 }
 
 /**
+ * @function getProjDetails
+ * @returns Returns a db response with all registered team member that have the role TM
+ */
+async function getProjectDetails(id) {
+    sql = "CALL p_get_project_details(?)";
+    const db = await mysql.createConnection(config);
+    res = await db.query(sql, [id]);
+    return res;
+}
+
+/**
  * @function getTeamMembers
  * @returns Returns a db response with all registered team member that have the role TM
  */
@@ -327,6 +338,7 @@ module.exports = {
     setANewPw: setANewPw,
     getTmProjects: getTmProjects,
     sendMail: sendMail,
-    setReminded: setReminded
+    setReminded: setReminded,
+    getProjectDetails: getProjectDetails
 } 
     

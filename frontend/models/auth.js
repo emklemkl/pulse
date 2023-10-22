@@ -4,8 +4,9 @@ import proj from "./proj.js";
 
 
 const auth = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAxIiwibmFtZSI6IkphbmUgRG9lIiwicm9sZSI6IlRNIiwiaWF0IjoxNjk3NjE3ODg0LCJleHAiOjE2OTc3MDQyODR9.ekDqVM6o0ueDqS9m6mSOdVYg-kAnM1W46T0l8fHM2Xk"
-    // token: ""
+    // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAxIiwibmFtZSI6IkphbmUgRG9lIiwicm9sZSI6IlRNIiwiaWF0IjoxNjk3NjE3ODg0LCJleHAiOjE2OTc3MDQyODR9.ekDqVM6o0ueDqS9m6mSOdVYg-kAnM1W46T0l8fHM2Xk"
+    // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAxIiwibmFtZSI6IkVtaWwgS2FybHNzb24iLCJyb2xlIjoiVE0iLCJpYXQiOjE2OTc3Mzc2NzksImV4cCI6MTY5NzgyNDA3OX0.8ZPjdT9vGb2DPOy-TEmC5NCYTYEUyJfZ2hMN6uODCGQ"
+    token: ""
     ,
     refreshThisPage: "",
     jwtForReset: "",

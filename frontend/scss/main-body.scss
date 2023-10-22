@@ -37,8 +37,11 @@ body {
     border: 0.2rem solid transparentize($orange, 0.8);
     border-radius: 1.4rem;
     max-width: 70rem;
+    max-height: 34rem;
+    overflow-y: scroll;
     padding: $border-rad-data + $button-padding;
     background-color: transparentize($orange, 0.85);
+    @include scrollbar();
     
     p {
         width: 92%;

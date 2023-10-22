@@ -6,8 +6,8 @@ export default class ProjectsView extends HTMLElement {
         if (!auth.token) {
             location.hash = "";
         }
-        auth.role = "TM"
-        auth.userId = 1001
+        // auth.role = "TM"
+        // auth.userId = 1001
         const nav = document.getElementsByTagName("navigation-outlet")[0];
         nav.classList.remove("hidden");
         if (auth.role === "PM") {

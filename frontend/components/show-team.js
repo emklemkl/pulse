@@ -23,7 +23,7 @@ export default class ShowTeam extends HTMLElement {
         teamRes.forEach(member => {
             console.log(member);
             let li = document.createElement("li")
-            li.classList.add("closed-list")
+            li.classList.add("team-view")
             li.innerHTML = `<img class="user-image" src = "./../public/user-solid.svg" alt="user"/>
             ${member.name} (${member.id}), ${member.mail}  <button class="li-button">Delete</button>`
             li.addEventListener("click", (event) => {

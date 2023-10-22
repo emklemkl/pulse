@@ -10,6 +10,7 @@ export default class ResetPw extends HTMLElement {
         
         const result = await auth.resetPw(
             this.credentials.password,
+            location.hash = ""
         );
     }
 

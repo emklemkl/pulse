@@ -7,6 +7,11 @@
     gap: 3rem;
     animation: fadeInAnimation ease $animation-duration;
     margin-bottom: 1.6rem;
+
+    div > h3 {
+        position: relative;
+        // left: 38%;
+    }
 }
 
 @keyframes fadeInAnimation {

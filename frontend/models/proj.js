@@ -20,10 +20,6 @@ const proj = {
     },
 
     getTmReports: async function getTmReports() {
-        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
-        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
-        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
-        console.log("🚀 ~ file: proj.js:24 ~ getTmReports ~ auth.userId:", auth.userId)
         const response = await fetch(`${baseURL}/reports_tm/${auth.userId}`, {
             method: "GET",
             headers: {
@@ -51,6 +47,20 @@ const proj = {
 
         projects: async function projects() {
             const response = await fetch(`${baseURL}/projects`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${auth.token}`,
+                    "content-type": "application/json"
+                },
+            });
+            const result = await response.json();
+            
+            return result[0];
+        },
+
+        projectDetails: async function projectDetails() {
+            console.log("🚀 ~ file: proj.js:64 ~ projectDetails ~ proj.selectProject:", proj.selectProject)
+            const response = await fetch(`${baseURL}/project_details/${proj.selectProject}`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${auth.token}`,

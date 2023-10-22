@@ -18,6 +18,7 @@ export default class ReadReport extends HTMLElement {
     
     async addComment() {
         await proj.addComment(this.readAndComment);
+        location.hash = "reports"
     }
 
     // connect component

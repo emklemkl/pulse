@@ -6,12 +6,22 @@ logged-view {
     position: relative;
 }
 
+reset-pw {
+    margin-top: 6rem;
+}
+
 router-outlet {
     max-width: 100%;
 }
 
 login-view {
     margin-top: 35%;
+}
+
+write-tm-report {
+    #writeReport {
+        min-width: 50rem;
+    }
 }
 
 user-info {

@@ -37,6 +37,12 @@ export default class Router extends HTMLElement {
                 name: "Projects",
                 access: "PMTM"
             },
+            "project_details": {
+                view: "<div class='container'><show-a-project></show-a-project></div>",
+                name: "Projects",
+                access: "PMTM",
+                hidden: true
+            },
             "create-project": {
                 view: "<div class='container'><create-project-view></create-project-view></div>",
                 name: "Create project",

@@ -19,7 +19,7 @@ export default class WriteReport extends HTMLElement {
     async writtenReport() {
         await proj.writeReport(this.writeReport, proj.selectReport);
         proj.selectReport = 0;
-        proj.selectReport = 0;
+        location.hash = "reports"
     }
 
     // connect component

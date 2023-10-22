@@ -29,7 +29,8 @@ export default class ShowTMProjects extends HTMLElement {
                 event.target.classList.toggle("open");
                 event.stopPropagation();
             });
-            h3.innerHTML = `Project: ${project.name}, Id: ${project.id}). Click the text below to read the description.`
+            h3.innerHTML = `<h4>Project: ${project.name}, Id: ${project.id}.</h4> 
+            <h5>Click the text below to read the description.</h5>`
             p.innerHTML += `${project.description}`
             div2.appendChild(h3)
             div2.appendChild(p)
@@ -38,8 +39,8 @@ export default class ShowTMProjects extends HTMLElement {
         
         const userInfo = document.createElement("div");
         userInfo.innerHTML = "<user-info></user-info>";
-        const projectAdd = document.createElement("div");
-        projectAdd.innerHTML = "<project-add></project-add>"
+        // const projectAdd = document.createElement("div");
+        // projectAdd.innerHTML = "<project-add></project-add>"
 
         // this.appendChild(userInfo);
         // this.innerHTML= " TM PROJ"

@@ -83,6 +83,11 @@ async function getTeam(req, res) {
     res.json(res2);
 }
 
+async function getProjDetails(req, res) {
+    let res2 = await pulse.getProjectDetails(req.params.id)
+    res.json(res2);
+}
+
 async function setNewPw(req, res) {
     let res2 = await pulse.setANewPw(req.body)
     // res.json(res2);
@@ -111,4 +116,5 @@ module.exports = {
     getTmReports: getTmReports,
     setNewPw: setNewPw,
     getTmProjects: getTmProjects,
+    getProjDetails: getProjDetails,
 } 

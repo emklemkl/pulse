@@ -1,0 +1,2 @@
+GRANT SET USER ON *.* TO 'dbadm'@'%';
+FLUSH PRIVILEGES;

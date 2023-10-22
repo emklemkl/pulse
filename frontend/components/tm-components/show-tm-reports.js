@@ -1,6 +1,5 @@
 import auth from "../../models/auth.js";
 import proj from "../../models/proj.js";
-import {baseURL} from "../../utils.js";
 export default class ShowTMReports extends HTMLElement {
     constructor() {
         super();
@@ -24,47 +23,36 @@ export default class ShowTMReports extends HTMLElement {
         let reports = await this.tmReports();
         const userId = parseInt(auth.userId)
         let projectsOrganize = [];
+        const now = new Date();
         for (const i of reports) {
             if (projectsOrganize.includes(i.proj_id_report)) {
                 continue;
             }
             projectsOrganize.push(i.proj_id_report)
         }
-        console.log(reports);
         for (const report of reports) 
-         {
-            if (report.sent === null && parseInt(report.submitted_by_user) === userId) {
+        {
             const dueDate = new Date(report.due_date);
             const year = dueDate.getFullYear();
             const month = String(dueDate.getMonth() + 1).padStart(2, '0'); // Adding 1 to the month since it's zero-based
             const day = String(dueDate.getDate()).padStart(2, '0');
             const yyyymmdd = `${year}-${month}-${day}`;
             let li = document.createElement("li")
-
-            // li.classList.add("closed-list", "unread")
-            li.classList.add("closed-list-tm", "not-sent")
-            li.textContent = `Project: ${report.proj_id_report} | Due date: ${yyyymmdd} 29:59`
-            li.addEventListener("click", (_) => {
-                proj.selectReport = report.id; // Saves the report id for submission on write-tm-reports.
-                proj.selectProject = report.proj_id_report; // Saves the report id for submission on write-tm-reports.
-                location.hash = `write_report`
-            });
-            ul.appendChild(li);
-            } else if (report.sent !== null && parseInt(report.submitted_by_user) === auth.userId) {
-                const dueDate = new Date(report.due_date);
-                const year = dueDate.getFullYear();
-                const month = String(dueDate.getMonth() + 1).padStart(2, '0'); // Adding 1 to the month since it's zero-based
-                const day = String(dueDate.getDate()).padStart(2, '0');
-                const yyyymmdd = `${year}-${month}-${day}`;
-                let li = document.createElement("li")
-                li.classList.add("sent")
-                li.classList.add("closed-list-tm")
+            if (report.sent === null &&  dueDate.setHours(dueDate.getHours + 23) < now) {   ////////////////////////////////////////////////////////////// FUnkar detta som det ska? 
+                li.classList.add("closed-list-tm", "late")
+            }
+            if (report.sent === null && parseInt(report.submitted_by_user) === userId) {
+                li.classList.add("closed-list-tm", "not-sent")
                 li.textContent = `Project: ${report.proj_id_report} | Due date: ${yyyymmdd} 29:59`
                 li.addEventListener("click", (_) => {
                     proj.selectReport = report.id; // Saves the report id for submission on write-tm-reports.
                     proj.selectProject = report.proj_id_report; // Saves the report id for submission on write-tm-reports.
                     location.hash = `write_report`
-                });
+            });
+            ul.appendChild(li);
+            } else if (report.sent !== null && parseInt(report.submitted_by_user) === userId) {
+                li.classList.add("closed-list-tm", "sent")
+                li.textContent = `Project: ${report.proj_id_report} | Due date: ${yyyymmdd} 29:59`
                 ul2.appendChild(li);
             }
         };

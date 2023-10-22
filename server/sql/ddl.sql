@@ -91,7 +91,6 @@ CREATE TABLE `reports` (
 );
 ALTER TABLE `reports` AUTO_INCREMENT = 100; # Changes the start value for AUTO_INC
 
-
 DROP PROCEDURE IF EXISTS p_get_all_reports;
 DELIMITER ;;
 CREATE PROCEDURE p_get_all_reports()
@@ -102,7 +101,8 @@ BEGIN
         p.description,
         r.id AS "reportid",
         r.submitted_report,
-        r.`read`
+        r.`read`,
+        r.`sent`
     FROM
         projects p
     JOIN
@@ -196,17 +196,52 @@ BEGIN
     SELECT
         p.id,
         p.name,
-        p.description
+        p.description,
+        p.project_start,
+        p.project_end
     FROM
         projects p;
 END
 ;;
 DELIMITER ;
 
-INSERT INTO projects(`name`, `description`, project_start, project_end, report_frequency) VALUES ("Project Test", "Testa testet med en text om test", '2023-10-18','2023-10-26',7);
+    SELECT
+        p.id,
+        p.name,
+        p.description,
+        p.project_start,
+        p.project_end
+    FROM
+        projects p;
+
+DROP PROCEDURE IF EXISTS p_get_project_details;
+DELIMITER ;;
+CREATE PROCEDURE p_get_project_details(a_id INT)
+BEGIN
+    SELECT
+        p.id as "pid",
+        p.`name` as "pname",
+        p.`description`,
+        p.project_start,
+        p.project_end,
+        p.report_frequency,
+        ud.name,
+        ud.id,
+        ud.mail,
+        ud.phone
+    FROM
+        projects p
+        JOIN user_to_proj utp ON utp.proj_id = a_id
+        JOIN user_data ud on ud.id = utp.user_id
+        WHERE p.id = a_id;
+END
+;;
+DELIMITER ;
+
+# INSERT INTO projects(`name`, `description`, project_start, project_end, report_frequency) VALUES ("Project Test", "Testa testet med en text om test", '2023-10-18','2023-10-26',7);
 
 
-INSERT INTO user_data(`name`,mail,address,phone,`role`, ssn,`password`) VALUES ("Admin Karlsson","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111",'$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa');
+INSERT INTO user_data(`name`,mail,address,phone,`role`, ssn,`password`) VALUES ("Admin PM","emil_ffs1994@hotmail.com","Ronneby Road 1 12345","0709111111","PM","9999991111",'$2b$10$fka0mhXh71fyG3PaS72w6e3Izy8tqUjVCKWumLfsKx9gkI6TkYmAa');
 INSERT INTO user_data(`name`,mail,address,phone,`role`,ssn,`password`) VALUES ("Emil Karlsson","emkl21@student.bth.se","Ronneby väg 1 14345","0709111112","TM","9999991212","$2b$10$nW8mWFzONZf3R9dD85Ccl.CfPg0mQjNoYRiTW41BiY908KvqTEIae");
 INSERT INTO user_data(`name`, mail, address, phone, `role`, ssn)
 VALUES ("John Smith", "john.smith@example.com", "123 Main St, Anytown, USA", "555-123-4567", "TM", "123456789");
@@ -229,3 +264,6 @@ update projects set `description`= "fringilla laoreet augue eu, tincidunt tempor
 #  Morbi accumsan cursus sem non pretium. Nulla laoreet ante sit amet lectus ultrices, ut dapibus risus ornare." where projects.id = 11;
 select * from projects;
 select * from user_to_proj;
+select * from reports;
+select * from user_data;
+use pulse;

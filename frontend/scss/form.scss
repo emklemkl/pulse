@@ -24,6 +24,7 @@
 textarea {
     font-size: 1rem !important; 
 }
+
 .create-project {
     display: flex;
     flex-direction: row;
@@ -84,7 +85,7 @@ textarea {
 
 .read-comment {
     display: flex;
-    max-width: 50rem;
+    max-width: 100%;
     flex-direction: column;
     align-items: center;
 

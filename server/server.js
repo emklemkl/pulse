@@ -16,6 +16,7 @@ app.use(mw.logIncomingToConsole); // Log requests to console.
 
 app.post("/login", rf.loginPost) // overview
 
+app.get("/project_details/:id", mw.authToken, rf.getProjDetails);
 app.get("/reports", mw.authToken, rf.getReports);
 app.get("/reports_tm/:id", mw.authToken, rf.getTmReports);
 app.get("/report/:id", mw.authToken, rf.getReport);
@@ -62,12 +63,10 @@ async function sendReminderMails() {
             }
         }
     }
-    // console.log(allReports);
-    // console.log(reportIdAndUserMail);
-    }
+}
 
 sendReminderMails();
-// setInterval(sendReminderMails, 60*100);
+setInterval(sendReminderMails, 60*1000);
 
 /**
  * Log app details to console when starting up.
